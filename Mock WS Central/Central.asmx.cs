@@ -18,12 +18,12 @@ namespace Mock_WS_Central
     [SoapDocumentService(RoutingStyle = SoapServiceRoutingStyle.RequestElement)]
     // Para permitir que se llame a este servicio web desde un script, usando ASP.NET AJAX, quite la marca de comentario de la línea siguiente. 
     // [System.Web.Script.Services.ScriptService]
-    public class WebService1 : IWsMoneyGramTISoapBinding
+    public class WsMockCentral : IWsMoneyGramTISoapBinding
     {
         [return: SoapElement("getAgentInformationReturn")]
         public AgentInfoResponse getAgentInformation(AgentInfoRequest informacionIN)
         {
-            return new AgentInfoResponse() {token = informacionIN. };
+            return new AgentInfoResponse() {};
         }
 
         [return: SoapElement("getInputFieldNamesReturn")]

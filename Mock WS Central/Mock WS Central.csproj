@@ -67,18 +67,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Pagos\WSVigoOrl.asmx" />
     <Content Include="Web.config" />
     <Content Include="Central.asmx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pagos\WSVigoOrl.asmx.cs">
+      <DependentUpon>WSVigoOrl.asmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Central.asmx.cs">
       <DependentUpon>Central.asmx</DependentUpon>
     </Compile>
     <Compile Include="WSDL\ClienteServiceInterfaces.cs" />
+    <Compile Include="WSDL\WSVigoOrlandiTI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
