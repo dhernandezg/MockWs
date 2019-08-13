@@ -1,0 +1,26 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <busquedaTransac xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <peticion>
+        <apMatBen />
+        <apMatRem />
+        <apPatBen />
+        <apPatRem />
+        <canal>1</canal>
+        <counterID>I0211101VG</counterID>
+        <idioma>ES</idioma>
+        <idFlujo>UID211112008588</idFlujo>
+        <mtcn>9725698160</mtcn>
+        <neg>VIGO</neg>
+        <nomBen />
+        <nomRem />
+        <oper>81040</oper>
+        <pais>1</pais>
+        <suc>2111</suc>
+        <tipoOper>1</tipoOper>
+        <uid>UID211112008590</uid>
+      </peticion>
+    </busquedaTransac>
+  </soap:Body>
+</soap:Envelope>
