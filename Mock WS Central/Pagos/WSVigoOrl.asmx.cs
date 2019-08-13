@@ -22,7 +22,6 @@ namespace Mock_WS_Central.Pagos
         [return: SoapElement("busqTransacMultReturn")]
         public ReceiveMoneyResponse busqTransacMult(RcvMnyCurrencyRequest peticion)
         {
-            peticion.counterID = "I0211101VG";
             return new ReceiveMoneyResponse()
             {
                 canal = peticion.canal,
@@ -79,6 +78,7 @@ namespace Mock_WS_Central.Pagos
         [return: SoapElement("busquedaTransacReturn")]
         public ReceiveMoneyResponse busquedaTransac(ReceiveMoneyRequest peticion)
         {
+            
             return new ReceiveMoneyResponse()
             {
                 canal = peticion.canal,
@@ -126,7 +126,7 @@ namespace Mock_WS_Central.Pagos
                         paisMonRem = "USD",
                         status = "LISTO PARA PAGAR",
                         telBen = "",
-                        telRem = "2211584297",
+                        telRem = "2211584297"
                     }
                }
             };

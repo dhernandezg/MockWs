@@ -29,61 +29,61 @@ public interface IWSVigoOrlSoapBinding {
     
     /// <remarks/>
     [System.Web.Services.WebMethodAttribute()]
-    [System.Web.Services.Protocols.SoapRpcMethodAttribute("", RequestNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl", ResponseNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl")]
+    [System.Web.Services.Protocols.SoapRpcMethodAttribute("", RequestNamespace="", ResponseNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl")]
     [return: System.Xml.Serialization.SoapElementAttribute("pagaTransacMEXReturn")]
     ReceiverPayResponse pagaTransacMEX(RcvrPayMEXRequest peticion);
     
     /// <remarks/>
     [System.Web.Services.WebMethodAttribute()]
-    [System.Web.Services.Protocols.SoapRpcMethodAttribute("", RequestNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl", ResponseNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl")]
+    [System.Web.Services.Protocols.SoapRpcMethodAttribute("", RequestNamespace="", ResponseNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl")]
     [return: System.Xml.Serialization.SoapElementAttribute("pagaTransacLAMReturn")]
     ReceiverPayResponse pagaTransacLAM(RcvrPayLAMRequest peticion);
     
     /// <remarks/>
     [System.Web.Services.WebMethodAttribute()]
-    [System.Web.Services.Protocols.SoapRpcMethodAttribute("", RequestNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl", ResponseNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl")]
+    [System.Web.Services.Protocols.SoapRpcMethodAttribute("", RequestNamespace="", ResponseNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl")]
     [return: System.Xml.Serialization.SoapElementAttribute("pagaTransacPANReturn")]
     ReceiverPayResponse pagaTransacPAN(RcvrPayPANRequest peticion);
     
     /// <remarks/>
     [System.Web.Services.WebMethodAttribute()]
-    [System.Web.Services.Protocols.SoapRpcMethodAttribute("", RequestNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl", ResponseNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl")]
+    [System.Web.Services.Protocols.SoapRpcMethodAttribute("", RequestNamespace="", ResponseNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl")]
     [return: System.Xml.Serialization.SoapElementAttribute("pagaTransacPERReturn")]
     ReceiverPayResponse pagaTransacPER(RcvrPayPERRequest peticion);
     
     /// <remarks/>
     [System.Web.Services.WebMethodAttribute()]
-    [System.Web.Services.Protocols.SoapRpcMethodAttribute("", RequestNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl", ResponseNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl")]
+    [System.Web.Services.Protocols.SoapRpcMethodAttribute("", RequestNamespace="", ResponseNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl")]
     [return: System.Xml.Serialization.SoapElementAttribute("pagoStatusReturn")]
     PayStatusResponse pagoStatus(string uid, string pais, string canal, string suc, string oper, string neg, string mtcn, string counterId, string idioma);
     
     /// <remarks/>
     [System.Web.Services.WebMethodAttribute()]
-    [System.Web.Services.Protocols.SoapRpcMethodAttribute("", RequestNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl", ResponseNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl")]
+    [System.Web.Services.Protocols.SoapRpcMethodAttribute("", RequestNamespace="", ResponseNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl")]
     [return: System.Xml.Serialization.SoapElementAttribute("selectTransacMultReturn")]
     ReceiveSelectResponse selectTransacMult(string neg, string monKeyTransf, string mon, string pais, string canal, string suc, string oper, string uid, string counterID, string idFlujo, string idioma);
     
     /// <remarks/>
     [System.Web.Services.WebMethodAttribute()]
-    [System.Web.Services.Protocols.SoapRpcMethodAttribute("", RequestNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl", ResponseNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl")]
+    [System.Web.Services.Protocols.SoapRpcMethodAttribute("", RequestNamespace="", ResponseNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl")]
     [return: System.Xml.Serialization.SoapElementAttribute("pagaTransacReturn")]
     ReceiverPayResponse pagaTransac(ReceiverPayRequest peticion);
     
     /// <remarks/>
     [System.Web.Services.WebMethodAttribute()]
-    [System.Web.Services.Protocols.SoapRpcMethodAttribute("", RequestNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl", ResponseNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl")]
+    [System.Web.Services.Protocols.SoapRpcMethodAttribute("", RequestNamespace="", ResponseNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl")]
     [return: System.Xml.Serialization.SoapElementAttribute("busqTransacMultReturn")]
     ReceiveMoneyResponse busqTransacMult(RcvMnyCurrencyRequest peticion);
     
     /// <remarks/>
     [System.Web.Services.WebMethodAttribute()]
-    [System.Web.Services.Protocols.SoapRpcMethodAttribute("", RequestNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl", ResponseNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl")]
+    [System.Web.Services.Protocols.SoapRpcMethodAttribute("", RequestNamespace="", ResponseNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl")]
     [return: System.Xml.Serialization.SoapElementAttribute("selectTransacReturn")]
     ReceiveSelectResponse selectTransac(string neg, string monKeyTransf, string pais, string canal, string suc, string oper, string uid, string counterID, string idFlujo, string idioma);
     
     /// <remarks/>
     [System.Web.Services.WebMethodAttribute()]
-    [System.Web.Services.Protocols.SoapRpcMethodAttribute("", RequestNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl", ResponseNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl")]
+    [System.Web.Services.Protocols.SoapRpcMethodAttribute("", RequestNamespace="", ResponseNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl")]
     [return: System.Xml.Serialization.SoapElementAttribute("busquedaTransacReturn")]
     ReceiveMoneyResponse busquedaTransac(ReceiveMoneyRequest peticion);
 }
