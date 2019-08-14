@@ -67,13 +67,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pagos\WSVigoOrl.asmx" />
+    <Content Include="Pagos\WSCentral.asmx" />
+    <Content Include="Pagos\WSCentralFactory.asmx" />
     <Content Include="Web.config" />
     <Content Include="Central.asmx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pagos\WSVigoOrl.asmx.cs">
-      <DependentUpon>WSVigoOrl.asmx</DependentUpon>
+    <Compile Include="Pagos\WSCentral.asmx.cs">
+      <DependentUpon>WSCentral.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Pagos\WSCentralFactory.asmx.cs">
+      <DependentUpon>WSCentralFactory.asmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Central.asmx.cs">

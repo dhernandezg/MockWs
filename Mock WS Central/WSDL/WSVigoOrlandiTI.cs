@@ -13,6 +13,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Web.Services;
 using System.Web.Services.Protocols;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 // 
@@ -77,15 +78,15 @@ public interface IWSVigoOrlSoapBinding {
     
     /// <remarks/>
     [System.Web.Services.WebMethodAttribute()]
-    [System.Web.Services.Protocols.SoapRpcMethodAttribute("", RequestNamespace="", ResponseNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl")]
-    [return: System.Xml.Serialization.SoapElementAttribute("selectTransacReturn")]
+    //[System.Web.Services.Protocols.SoapRpcMethodAttribute("", RequestNamespace="", ResponseNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl")]
+    //[return: System.Xml.Serialization.SoapElementAttribute("selectTransacReturn")]
     ReceiveSelectResponse selectTransac(string neg, string monKeyTransf, string pais, string canal, string suc, string oper, string uid, string counterID, string idFlujo, string idioma);
-    
+
     /// <remarks/>
     [System.Web.Services.WebMethodAttribute()]
-    [System.Web.Services.Protocols.SoapRpcMethodAttribute("", RequestNamespace="", ResponseNamespace="http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl")]
-    [return: System.Xml.Serialization.SoapElementAttribute("busquedaTransacReturn")]
-    ReceiveMoneyResponse busquedaTransac(ReceiveMoneyRequest peticion);
+    [System.Web.Services.Protocols.SoapRpcMethodAttribute("", RequestNamespace = "", ResponseNamespace = "http://10.81.11.203:8008/WSVigoOrlandiTI/services/WSVigoOrl")]
+//    [return: System.Xml.Serialization.SoapElementAttribute("busquedaTransacReturn")]
+    void busquedaTransac(ReceiveMoneyRequest peticion);
 }
 
 /// <remarks/>
