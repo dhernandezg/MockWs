@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mock WS Central", "Mock WS 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mock", "ClassLibrary1\Mock.csproj", "{F51D3898-882B-4709-9616-EEA1A9536D14}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockWebApi", "MockWebApi\MockWebApi.csproj", "{E297C618-CF0C-4F10-9998-6F07FBA125FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F51D3898-882B-4709-9616-EEA1A9536D14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F51D3898-882B-4709-9616-EEA1A9536D14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F51D3898-882B-4709-9616-EEA1A9536D14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E297C618-CF0C-4F10-9998-6F07FBA125FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E297C618-CF0C-4F10-9998-6F07FBA125FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E297C618-CF0C-4F10-9998-6F07FBA125FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E297C618-CF0C-4F10-9998-6F07FBA125FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

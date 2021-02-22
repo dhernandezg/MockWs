@@ -17,7 +17,7 @@ namespace Mock_WS_Central.Pagos
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     //[System.ComponentModel.ToolboxItem(false)]
     // Para permitir que se llame a este servicio web desde un script, usando ASP.NET AJAX, quite la marca de comentario de la línea siguiente. 
-    //[System.Web.Script.Services.ScriptService]
+    [System.Web.Script.Services.ScriptService]
     public class MockWSVigoORL : System.Web.Services.WebService
     {
         public MockWSVigoORL()
@@ -44,6 +44,7 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void validaRestricciones()
         {
+            HttpContext.Current.Response.ContentType = "application/xml";
             if (!string.IsNullOrEmpty(Request))
             {
                 if (Request.Contains("validaRestriccionesCte"))
@@ -54,22 +55,79 @@ namespace Mock_WS_Central.Pagos
                 {
                     SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:validaInfoCteResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><uid>UID113513823753</uid><resultado><codResp>C00000</codResp><msgResp>La validación es correcta, puede continuar con la operación.</msgResp></resultado><direccion><pais>MEX</pais><poblacion>GUERRERO</poblacion><localidad>ACAPULCO DE JUAREZ</localidad></direccion></response></ns2:validaInfoCteResponse></soap:Body></soap:Envelope>");
                 }
+                else if (Request.Contains("RemesaComercial"))
+                {
+                    //Limites rebasados
+                    //SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:validaRemesaComercialResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><nivelRiesgo>0</nivelRiesgo><nivelTxn>0</nivelTxn><transaccion><codigoPaisIso></codigoPaisIso></transaccion><acumulados><txnDia>0</txnDia><txnMes>3</txnMes><txnAnio>11</txnAnio><txnPagAnioOpe>12</txnPagAnioOpe><montoDia>3IubrNp6vRlIdOsSBk_1dg</montoDia><montoMes>aw7WRI-C40ZcRryZrAWGDw</montoMes><montoAnio>5dtPeAlaMh1lUucC_YPfPw</montoAnio><mtoMaxXEnv>3IubrNp6vRlIdOsSBk_1dg</mtoMaxXEnv></acumulados><puntos><actuales>0</actuales><xOperacion>0</xOperacion></puntos><camposReq></camposReq><resultado><codResp>CR1028</codResp><msgResp>No es posible finalizar la operacion, el cliente ha alcanzado los limites de monto acumulado mensual, en caso de tener dudas pide que se comunique al 01 800 3030 303 Opcion 1 o al 1579 4203 Opcion 1.</msgResp></resultado><uid>UID608829470476</uid></response></ns2:validaRemesaComercialResponse></soap:Body></soap:Envelope> ");
+                    SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:validaRemesaComercialResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><nivelRiesgo>1</nivelRiesgo><marcaCte>P1</marcaCte><nivelTxn>1</nivelTxn><transaccion><codigoPaisIso>USA</codigoPaisIso></transaccion><acumulados><txnDia>0</txnDia><txnMes>0</txnMes><txnAnio>0</txnAnio><txnPagAnioOpe>1</txnPagAnioOpe><montoDia>3IubrNp6vRlIdOsSBk_1dg</montoDia><montoMes>3IubrNp6vRlIdOsSBk_1dg</montoMes><montoAnio>3IubrNp6vRlIdOsSBk_1dg</montoAnio><mtoMaxXEnv>3IubrNp6vRlIdOsSBk_1dg</mtoMaxXEnv></acumulados><puntos><actuales>0</actuales><xOperacion>0</xOperacion></puntos><camposReq>CURP,RELAC,EMPRESA,EDONAC,TEL,NUMTXNS,MNTOTXNS,FECHVIG</camposReq><resultado><codResp>C00000</codResp><msgResp>Validacion correcta, puede continuar con la operacion.</msgResp></resultado><uid>UID462405679507</uid></response></ns2:validaRemesaComercialResponse></soap:Body></soap:Envelope>");
+                }
+                else if (Request.Contains("validaRemesa")) {
+                    SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:validaRemesaResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><nivelRiesgo>1</nivelRiesgo><transaccion><codigoPaisIso>USA</codigoPaisIso></transaccion><acumulados><txnDia>0</txnDia><txnMes>0</txnMes><txnAnio>3</txnAnio><montoDia>3IubrNp6vRlIdOsSBk_1dg</montoDia><montoMes>3IubrNp6vRlIdOsSBk_1dg</montoMes><montoAnio>cwBlCI3rmDTk8P5RIm3dag</montoAnio><mtoMaxXEnv>3IubrNp6vRlIdOsSBk_1dg</mtoMaxXEnv></acumulados><puntos><actuales>120</actuales><xOperacion>0</xOperacion></puntos><camposReq>APPAT,DOM_PAIS,DOM_EDO,DOM_NEXT,DOM_NINT,FNAC,APMAT,DOM_COL,DOM_CP,ID_FOLIO,NOM,NAL,DOM_CALLE,DOM_POB,ID_TIPO,TEL</camposReq><resultado><codResp>C00000</codResp><msgResp>Validacion correcta, puede continuar con la operacion.</msgResp></resultado><uid>UID113513829676</uid></response></ns2:validaRemesaResponse></soap:Body></soap:Envelope>");
+                }
+                else if (Request.Contains("registraTxn"))
+                {
+                    SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:registraTxnResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><resultado><codResp>C00000</codResp><msgResp>Registro de transacción exitosa.</msgResp></resultado><uid>UID462405704187</uid></response></ns2:registraTxnResponse></soap:Body></soap:Envelope>");
+                }
+            }
+        }
+
+        [WebMethod]
+        public void validaRestriccionesEDD() 
+        {
+            HttpContext.Current.Response.ContentType = "application/xml";
+            if (Request.Contains("validaRestriccionesCte"))
+            {
+                SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:validaRestriccionesCteResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><bloqReq>EDD</bloqReq><accionesReq></accionesReq><clienteUnico><idPais>0</idPais><idCanal>0</idCanal><idSucursal>0</idSucursal><idFolio>0</idFolio></clienteUnico><resultado><codResp>C00000</codResp><msgResp>El cliente no tiene acciones ni bloqueos pendientes.</msgResp></resultado><uid>UID462405394120</uid></response></ns2:validaRestriccionesCteResponse></soap:Body></soap:Envelope>");
+            }
+        }
+
+        [WebMethod]
+        public void validaRestriccionesKYC()
+        {
+            HttpContext.Current.Response.ContentType = "application/xml";
+            if (Request.Contains("validaRestriccionesCte"))
+            {
+                SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:validaRestriccionesCteResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><bloqReq>KYCR</bloqReq><accionesReq></accionesReq><clienteUnico><idPais>0</idPais><idCanal>0</idCanal><idSucursal>0</idSucursal><idFolio>0</idFolio></clienteUnico><resultado><codResp>C00000</codResp><msgResp>El cliente no tiene acciones ni bloqueos pendientes.</msgResp></resultado><uid>UID462405394120</uid></response></ns2:validaRestriccionesCteResponse></soap:Body></soap:Envelope>");
+            }
+        }
+
+        [WebMethod]
+        public void ValidaRemesaBloqueado()
+        {
+            HttpContext.Current.Response.ContentType = "application/xml";
+            if (!string.IsNullOrEmpty(Request))
+            {
+                if (Request.Contains("validaRestriccionesCte"))
+                {
+                    SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:validaRestriccionesCteResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><bloqReq></bloqReq><accionesReq></accionesReq><clienteUnico><idPais>0</idPais><idCanal>0</idCanal><idSucursal>0</idSucursal><idFolio>0</idFolio></clienteUnico><resultado><codResp>C00000</codResp><msgResp>El cliente no tiene acciones ni bloqueos pendientes.</msgResp></resultado><uid>UID462405394120</uid></response></ns2:validaRestriccionesCteResponse></soap:Body></soap:Envelope>");
+                }
+                else if (Request.Contains("validaInfoCte"))
+                {
+                    SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:validaInfoCteResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><uid>UID113513823753</uid><resultado><codResp>C00000</codResp><msgResp>La validación es correcta, puede continuar con la operación.</msgResp></resultado><direccion><pais>MEX</pais><poblacion>GUERRERO</poblacion><localidad>ACAPULCO DE JUAREZ</localidad></direccion></response></ns2:validaInfoCteResponse></soap:Body></soap:Envelope>");
+                }
+                else if (Request.Contains("RemesaComercial"))
+                {
+                    //Limites rebasados
+                    SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:validaRemesaComercialResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><nivelRiesgo>0</nivelRiesgo><nivelTxn>0</nivelTxn><transaccion><codigoPaisIso></codigoPaisIso></transaccion><acumulados><txnDia>0</txnDia><txnMes>3</txnMes><txnAnio>11</txnAnio><txnPagAnioOpe>12</txnPagAnioOpe><montoDia>3IubrNp6vRlIdOsSBk_1dg</montoDia><montoMes>aw7WRI-C40ZcRryZrAWGDw</montoMes><montoAnio>5dtPeAlaMh1lUucC_YPfPw</montoAnio><mtoMaxXEnv>3IubrNp6vRlIdOsSBk_1dg</mtoMaxXEnv></acumulados><puntos><actuales>0</actuales><xOperacion>0</xOperacion></puntos><camposReq></camposReq><resultado><codResp>CR1028</codResp><msgResp>No es posible finalizar la operacion, el cliente ha alcanzado los limites de monto acumulado mensual, en caso de tener dudas pide que se comunique al 01 800 3030 303 Opcion 1 o al 1579 4203 Opcion 1.</msgResp></resultado><uid>UID608829470476</uid></response></ns2:validaRemesaComercialResponse></soap:Body></soap:Envelope> ");
+                    //SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:validaRemesaComercialResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><nivelRiesgo>1</nivelRiesgo><marcaCte>P1</marcaCte><nivelTxn>1</nivelTxn><transaccion><codigoPaisIso>USA</codigoPaisIso></transaccion><acumulados><txnDia>0</txnDia><txnMes>0</txnMes><txnAnio>0</txnAnio><txnPagAnioOpe>1</txnPagAnioOpe><montoDia>3IubrNp6vRlIdOsSBk_1dg</montoDia><montoMes>3IubrNp6vRlIdOsSBk_1dg</montoMes><montoAnio>3IubrNp6vRlIdOsSBk_1dg</montoAnio><mtoMaxXEnv>3IubrNp6vRlIdOsSBk_1dg</mtoMaxXEnv></acumulados><puntos><actuales>0</actuales><xOperacion>0</xOperacion></puntos><camposReq>APPAT,DOM_PAIS,DOM_EDO,DOM_NINT,FNAC,APMAT,DOM_COL,DOM_CP,ID_FOLIO,NOM,NAL,DOM_CALLE,DOM_POB,ID_TIPO</camposReq><resultado><codResp>C00000</codResp><msgResp>Validacion correcta, puede continuar con la operacion.</msgResp></resultado><uid>UID462405679507</uid></response></ns2:validaRemesaComercialResponse></soap:Body></soap:Envelope>");
+                }
                 else if (Request.Contains("validaRemesa"))
                 {
                     SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:validaRemesaResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><nivelRiesgo>1</nivelRiesgo><transaccion><codigoPaisIso>USA</codigoPaisIso></transaccion><acumulados><txnDia>0</txnDia><txnMes>0</txnMes><txnAnio>3</txnAnio><montoDia>3IubrNp6vRlIdOsSBk_1dg</montoDia><montoMes>3IubrNp6vRlIdOsSBk_1dg</montoMes><montoAnio>cwBlCI3rmDTk8P5RIm3dag</montoAnio><mtoMaxXEnv>3IubrNp6vRlIdOsSBk_1dg</mtoMaxXEnv></acumulados><puntos><actuales>120</actuales><xOperacion>0</xOperacion></puntos><camposReq>APPAT,DOM_PAIS,DOM_EDO,DOM_NEXT,DOM_NINT,FNAC,APMAT,DOM_COL,DOM_CP,ID_FOLIO,NOM,NAL,DOM_CALLE,DOM_POB,ID_TIPO,TEL</camposReq><resultado><codResp>C00000</codResp><msgResp>Validacion correcta, puede continuar con la operacion.</msgResp></resultado><uid>UID113513829676</uid></response></ns2:validaRemesaResponse></soap:Body></soap:Envelope>");
                 }
-
             }
         }
 
         [WebMethod]
         public void bsqListaOFAC()
         {
+            HttpContext.Current.Response.ContentType = "application/xml";
             SetResponse("<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><soapenv:Body><ns1:BsqListaOFACResponse xmlns=\"http://dineroexpress.elektra.com/BusquedaDex/ws/schemas\" xmlns:ns1=\"http://dineroexpress.elektra.com/BusquedaDex/ws/schemas\"><ns1:uid>UID211112020578</ns1:uid><ns1:bloqueoOFAC>0</ns1:bloqueoOFAC><ns1:mensajeLista>El cliente puede operar</ns1:mensajeLista><ns1:codigoMensaje>E</ns1:codigoMensaje><ns1:mensaje>OPERACION EXITOSA</ns1:mensaje></ns1:BsqListaOFACResponse></soapenv:Body></soapenv:Envelope>");
         }
         [WebMethod]
         public void bsqTransxFolio()
         {
+
             SetResponse("{\"agenteId\":1,\"paisId\":1,\"subsidiariaId\":1,\"sucursalId\":451,\"uid\":\"UID213814093519\",\"tipoOperacion\":2,\"transferenciaId\":\"72144490854\",\"usuarioId\":\"T332671\"}");
         }
 
@@ -83,22 +141,25 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void ConsultaMTCNOrlandi()
         {
+            HttpContext.Current.Response.ContentType = "application/xml";
             SetResponse("<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><soapenv:Body><busquedaTransacResponse soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"><busquedaTransacReturn href=\"#id0\" /></busquedaTransacResponse><multiRef id=\"id0\" soapenc:root=\"0\" soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" xsi:type=\"ns1:ReceiveMoneyResponse\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:ns1=\"urn:RR\"><canal xsi:type=\"xsd:string\">1</canal><consume xsi:type=\"xsd:int\">0</consume><data xsi:type=\"soapenc:Array\" soapenc:arrayType=\"ns1:ReceiveMoneyData[1]\" xmlns:ns2=\"http://www.w3.org/2002/12/soap-encoding\"><item href=\"#id1\" /></data><idFlujo xsi:type=\"xsd:string\">UID113513826275</idFlujo><msj xsi:type=\"xsd:string\">Ok</msj><msjEnvio xsi:type=\"xsd:string\"></msjEnvio><neg xsi:type=\"xsd:string\">ORL</neg><numMatches xsi:type=\"xsd:int\">1</numMatches><oper xsi:type=\"xsd:string\">730200</oper><pais xsi:type=\"xsd:string\">1</pais><res xsi:type=\"xsd:int\">1</res><suc xsi:type=\"xsd:string\">1135</suc><uid xsi:type=\"xsd:string\">UID113513826276</uid></multiRef><multiRef id=\"id1\" soapenc:root=\"0\" soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" xsi:type=\"ns3:ReceiveMoneyData\" xmlns:ns3=\"urn:RR\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\"><apMatBen xsi:type=\"xsd:string\">GARCIA</apMatBen><apMatRem xsi:type=\"xsd:string\">RAMOS</apMatRem><apPatBen xsi:type=\"xsd:string\">HERNANDEZ</apPatBen><apPatRem xsi:type=\"xsd:string\">SANCHEZ</apPatRem><cargos xsi:type=\"xsd:double\">10.0</cargos><cdadBen xsi:type=\"xsd:string\">ACAPULCO</cdadBen><cdadRem xsi:type=\"xsd:string\">GLEN ELLYN</cdadRem><cpBen xsi:type=\"xsd:string\"></cpBen><cpRem xsi:type=\"xsd:string\">60137</cpRem><cta xsi:type=\"xsd:string\"></cta><dirBen xsi:type=\"xsd:string\"></dirBen><dirRem xsi:type=\"xsd:string\">145 SURREY DR APT S</dirRem><edoBen xsi:type=\"xsd:string\">MEXICO</edoBen><edoRem xsi:type=\"xsd:string\">IL</edoRem><fecEnvio xsi:type=\"xsd:string\">06-09-19</fecEnvio><horaEnv xsi:type=\"xsd:string\">0917A EDT</horaEnv><monKeyTransf xsi:type=\"xsd:string\">3623936810</monKeyTransf><montoBruto xsi:type=\"xsd:double\">210.0</montoBruto><montoPay xsi:type=\"xsd:double\">3936.0</montoPay><montoPrinc xsi:type=\"xsd:double\">200.0</montoPrinc><mtcn xsi:type=\"xsd:string\">7089049078</mtcn><newMtcn xsi:type=\"xsd:string\">1916087084260137</newMtcn><nomBen xsi:type=\"xsd:string\">DANIEL</nomBen><nomRem xsi:type=\"xsd:string\">LAURA</nomRem><paisCodeBen xsi:type=\"xsd:string\">MX</paisCodeBen><paisCodeRem xsi:type=\"xsd:string\">US</paisCodeRem><paisMonBen xsi:type=\"xsd:string\">MXN</paisMonBen><paisMonRem xsi:type=\"xsd:string\">USD</paisMonRem><status xsi:type=\"xsd:string\">LISTO PARA PAGAR</status><telBen xsi:type=\"xsd:string\"></telBen><telRem xsi:type=\"xsd:string\">6309949363</telRem></multiRef></soapenv:Body></soapenv:Envelope>");
         }
 
         [WebMethod]
         public void ConsultarAgenteMG()
         {
+            HttpContext.Current.Response.ContentType = "application/xml";
             SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:consultarAgenteResponse xmlns:ns2=\"http://ws.elektra.com/\"><response><respuesta><codigo>C00000</codigo><mensaje>Datos encontrados.</mensaje></respuesta><credencial><agentID>VQG1fhySEp08a8p1HBfCTA</agentID><agentSequence>61HNiUWEjFXSivoytmSKWQ</agentSequence><token>eYRmfSc7BfQy-UkluGbpDQ</token></credencial></response></ns2:consultarAgenteResponse></soap:Body></soap:Envelope>");
         }
 
         [WebMethod]
         public void PagosMG()
         {
+            HttpContext.Current.Response.ContentType = "application/xml";
             if (!string.IsNullOrEmpty(Request))
             {
                 if (Request.Contains("consultarMtcn"))
-                    SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:consultarMtcnResponse xmlns:ns2=\"http://ws.elektra.com/\"><response><uid>UID113513829673</uid><respuesta><codigo>C00000</codigo><mensaje>Consulta exitosa. | C00000 | 2019-06-11T09:24:52.064-05:00</mensaje></respuesta><remitente><nombre>ROBERTO</nombre><segundoNombre></segundoNombre><apellidoPaterno>VILLALVA</apellidoPaterno><apellidoMaterno></apellidoMaterno><otroApellido></otroApellido></remitente><beneficiario><nombre>MARISOL</nombre><segundoNombre></segundoNombre><apellidoPaterno>SERRANO</apellidoPaterno><apellidoMaterno>BERNAL</apellidoMaterno><otroApellido></otroApellido></beneficiario><datosRemesa><mtcn>W7Q5uK4OWdGn_bAgy6xOUg</mtcn><estatusMtcn>DISPONIBLE</estatusMtcn><tipoCambio>19.270000</tipoCambio><fechaEnvio>2019-06-10T18:30:11.000-05:00</fechaEnvio><origenRem><paisOrigen>USA</paisOrigen><monedaOrigen>USD</monedaOrigen><ciudadOrigen></ciudadOrigen><estadoOrigen></estadoOrigen><montoOrigen></montoOrigen></origenRem><destinoRem><paisDestino>MEX</paisDestino><monedaDestino>MXN</monedaDestino><ciudadDestino></ciudadDestino><estadoDestino></estadoDestino><montoPagar>xdBTihan5TuQ1ANYLD9cEg</montoPagar></destinoRem></datosRemesa><camposRequeridos /></response></ns2:consultarMtcnResponse></soap:Body></soap:Envelope>");
+                    SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:consultarMtcnResponse xmlns:ns2=\"http://ws.elektra.com/\"><response><uid>UID113513829673</uid><respuesta><codigo>C00000</codigo><mensaje>Consulta exitosa. | C00000 | 2019-06-11T09:24:52.064-05:00</mensaje></respuesta><remitente><nombre>ROBERTO</nombre><segundoNombre></segundoNombre><apellidoPaterno>VILLALVA</apellidoPaterno><apellidoMaterno></apellidoMaterno><otroApellido></otroApellido></remitente><beneficiario><nombre>MARISOL</nombre><segundoNombre></segundoNombre><apellidoPaterno>SERRANO</apellidoPaterno><apellidoMaterno>BERNAL</apellidoMaterno><otroApellido></otroApellido></beneficiario><datosRemesa><mtcn>W7Q5uK4OWdGn_bAgy6xOUg</mtcn><estatusMtcn>DISPONIBLE</estatusMtcn><tipoCambio>19.270000</tipoCambio><fechaEnvio>2019-06-10T18:30:11.000-05:00</fechaEnvio><origenRem><paisOrigen>USA</paisOrigen><monedaOrigen>USD</monedaOrigen><ciudadOrigen></ciudadOrigen><estadoOrigen></estadoOrigen><montoOrigen></montoOrigen></origenRem><destinoRem><paisDestino>MEX</paisDestino><monedaDestino>MXN</monedaDestino><ciudadDestino></ciudadDestino><estadoDestino></estadoDestino><montoPagar>xdBTihan5TuQ1ANYLD9cEg</montoPagar></destinoRem></datosRemesa><camposRequeridos>receiverPhotoIdState</camposRequeridos></response></ns2:consultarMtcnResponse></soap:Body></soap:Envelope>");
                 //var xmlRequest = XDocument.Load(new StringReader(Request));
                 //    string.Format("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:consultarMtcnResponse xmlns:ns2=\"http://ws.elektra.com/\"><response><uid>{0}</uid><respuesta><codigo>C00000</codigo><mensaje>Consulta exitosa. | C00000 | 2019-06-11T09:24:52.064-05:00</mensaje></respuesta><remitente><nombre>DANIEL</nombre><segundoNombre></segundoNombre><apellidoPaterno>HERNANDEZ</apellidoPaterno><apellidoMaterno>GARCIA</apellidoMaterno><otroApellido></otroApellido></remitente><beneficiario><nombre>{1}</nombre><segundoNombre>{2}</segundoNombre><apellidoPaterno>{3}</apellidoPaterno><apellidoMaterno>{4}</apellidoMaterno><otroApellido>{5}</otroApellido></beneficiario><datosRemesa><mtcn>{6}</mtcn><estatusMtcn>DISPONIBLE</estatusMtcn><tipoCambio>19.270000</tipoCambio><fechaEnvio>2019-06-10T18:30:11.000-05:00</fechaEnvio><origenRem><paisOrigen>USA</paisOrigen><monedaOrigen>USD</monedaOrigen><ciudadOrigen></ciudadOrigen><estadoOrigen></estadoOrigen><montoOrigen></montoOrigen></origenRem><destinoRem><paisDestino>MEX</paisDestino><monedaDestino>MXN</monedaDestino><ciudadDestino></ciudadDestino><estadoDestino></estadoDestino><montoPagar>xdBTihan5TuQ1ANYLD9cEg</montoPagar></destinoRem></datosRemesa><camposRequeridos /></response></ns2:consultarMtcnResponse></soap:Body></soap:Envelope>",
                 //       GetValueStringFromNode("uid"),"JUAN", "", "PEREZ","LOPEZ","", GetValueStringFromNode("mtcn"));
@@ -115,18 +176,27 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void PagosWU()
         {
+            HttpContext.Current.Response.ContentType = "application/xml";
             if (!string.IsNullOrEmpty(Request))
             {
-                if (Request.Contains("busquedaTransac"))
+                if (Request.Contains("consultarMtcn"))
+                    //SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns3:consultarMtcnResponse xmlns:ns2=\"http://www.westernunion.com/schema/xrsi\" xmlns:ns3=\"http://ws.elektra.com/\"><response><uid>UID409803727962</uid><resultado><codigo>C00000</codigo><mensaje>Consulta Exitosa</mensaje></resultado><idFlujo>UID409803727963</idFlujo><txn><beneficiario><nombre>JOSE LUIS</nombre><apellidoPaterno>LOPEZ</apellidoPaterno><apellidoMaterno>PORTILLO</apellidoMaterno><estado>ESTADO DE MEXICO</estado><ciudad>TEPOTZOTLAN</ciudad><codigoPostal></codigoPostal><calle></calle><telefono></telefono></beneficiario><remitente><nombre>JULIO </nombre><apellidoPaterno>AMADO</apellidoPaterno><apellidoMaterno></apellidoMaterno><estado>GA</estado><ciudad>DORAVILLE</ciudad><codigoPostal>30340</codigoPostal><calle>3852 MCELROY RD APT F-6</calle><telefono>6782923697</telefono></remitente><remesa><llaveTransferencia>3624020337</llaveTransferencia><mtcn>vo7ok1HGwIrnOrAwXgpmAA</mtcn><mtcnNuevo>CVEkNgR73pRnKJ785cTQFeoh9Dk7-IjFAtQ493qpzO0</mtcnNuevo><mensajeEnvio></mensajeEnvio><montos><montoTotal>Yv7J75ulthqv0HFaFqji1Q</montoTotal><montoPago>bjtnQOGp1qGXHj9IQ1ib8Q</montoPago><montoPrincipal>bdKUtQY76TfcBrF7yM6ADg</montoPrincipal><cargos>5ld5qrdTGJjMVdyNRM0NUA</cargos><tipoDeCambio>Eq7onQnTAJn0JoVF_weGsA</tipoDeCambio></montos><paisDestino><codigoPais>MX</codigoPais><codigoMoneda>MXN</codigoMoneda><codigoPaisMM>MEX</codigoPaisMM></paisDestino><paisOrigen><codigoPais>US</codigoPais><codigoMoneda>USD</codigoMoneda><codigoPaisMM>USA</codigoPaisMM></paisOrigen><cuenta></cuenta><estatus>LISTO PARA PAGAR</estatus><fechaEnvio>10-08-19 </fechaEnvio><horaEnvio>0733A EDT</horaEnvio><idOperador>318811</idOperador></remesa><codigosAgregacion /></txn></response></ns3:consultarMtcnResponse></soap:Body></soap:Envelope>");
+                    SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns3:consultarMtcnResponse xmlns:ns2=\"http://www.westernunion.com/schema/xrsi\" xmlns:ns3=\"http://ws.elektra.com/\"><response><uid>UID010008581452</uid><resultado><codigo>C00000</codigo><mensaje>Consulta Exitosa</mensaje></resultado><idFlujo>UID010008581454</idFlujo><txn><beneficiario><nombre>DEISY VIVIANA</nombre><apellidoPaterno>HERRERA</apellidoPaterno><apellidoMaterno>CASTILLO</apellidoMaterno><estado>DF</estado><ciudad>MEXICO</ciudad><codigoPostal></codigoPostal><calle></calle><telefono></telefono></beneficiario><remitente><nombre>JHON ALEXANDER</nombre><apellidoPaterno>CHACON</apellidoPaterno><apellidoMaterno>MEZA</apellidoMaterno><estado>SANTANDER</estado><ciudad>FLORIDABLANCA</ciudad><codigoPostal></codigoPostal><calle>CL 156 N 29-38 BR AZOVILAGOS</calle><telefono>0573164311123</telefono></remitente><remesa><llaveTransferencia>3623967006</llaveTransferencia><mtcn>nrlfZCZhACYocIIcsU_EVQ</mtcn><mtcnNuevo>H3tj8ZaojuzJYWcq_P8JGlceUD-QS4X3hyV9xtABWP8</mtcnNuevo><mensajeEnvio></mensajeEnvio><montos><montoTotal>q_Le739II3usWO_CJvseMQ</montoTotal><montoPago>I2X73-C4goAgGO3SCdsi2w</montoPago><montoPrincipal>ea3bQcnCrVlFHx2XqBrMhg</montoPrincipal><cargos>7GDtBJaOEtyDknjQTNycEg</cargos><tipoDeCambio>1_GAmfBnj3_MeGsD2vgcIQ</tipoDeCambio></montos><paisDestino><codigoPais>MX</codigoPais><codigoMoneda>MXN</codigoMoneda><codigoPaisMM>MEX</codigoPaisMM></paisDestino><paisOrigen><codigoPais>CO</codigoPais><codigoMoneda>COP</codigoMoneda><codigoPaisMM>COL</codigoPaisMM></paisOrigen><cuenta></cuenta><estatus>LISTO PARA PAGAR</estatus><fechaEnvio>06-09-20 </fechaEnvio><horaEnvio>0453P EDT</horaEnvio><idOperador>247300</idOperador></remesa><codigosAgregacion /></txn></response></ns3:consultarMtcnResponse></soap:Body></soap:Envelope>");
+                else if (Request.Contains("pagarMtcn"))
+                    SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns3:pagarMtcnResponse xmlns:ns2=\"http://www.westernunion.com/schema/xrsi\" xmlns:ns3=\"http://ws.elektra.com/\"><response><uid>UID113513832582</uid><resultado><codigo>C00000</codigo><mensaje>Operación Exitosa</mensaje></resultado><compliance>K1hCicKVV9gKCVB3CZN3oA9KT02xAi4YNekFswvatEZWjuPrQYwn97_1AGXRwzzowTgNWvxRNctm96dZU5rZ-V3Lh8ytqZGxM2cDt9APvUrHhyICPJv9bEBYNnX3_CPXCEMT5V5YKG8V1M0GakORZF_6g9dzA0OC3jfJooGbb5YRn5q0K7aJZSfPmWbp1gFsWUs7TYzoEghv7jFHiu7JcJeDfYWn5-oPrBhhLd_qaGHy6fKPpnKWDszFVks5IpaTx5wLSQAmtf7wCIOgb2DxiQ</compliance><fechaOperacion>06-11-2019 18:19</fechaOperacion><mtcn>zu5soUXITlk9qx6BO0KS9w</mtcn><codigosAgregacion /><historicoAgregacion /></response></ns3:pagarMtcnResponse></soap:Body></soap:Envelope>");
+                else if (Request.Contains("busquedaTransac") && Request.Contains("><neg>VIGO</neg>"))
                 {
                     //SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns3:consultarMtcnResponse xmlns:ns2=\"http://www.westernunion.com/schema/xrsi\" xmlns:ns3=\"http://ws.elektra.com/\"><response><uid>UID113513832577</uid><resultado><codigo>C00000</codigo><mensaje>Consulta Exitosa</mensaje></resultado><idFlujo>UID113513832579</idFlujo><txn><beneficiario><nombre>NESTOR ALTAIR</nombre><apellidoPaterno>MARTINEZ</apellidoPaterno><apellidoMaterno>GUTIERREZ</apellidoMaterno><estado>GRO</estado><ciudad>ACAPULCO</ciudad><codigoPostal></codigoPostal><calle></calle><telefono></telefono></beneficiario><remitente><nombre>IVAN</nombre><apellidoPaterno>MOLINA</apellidoPaterno><apellidoMaterno>GARCIA</apellidoMaterno><estado>NY</estado><ciudad>BRONX</ciudad><codigoPostal>10460</codigoPostal><calle>995 EAST 173RD ST</calle><telefono>6467308157</telefono></remitente><remesa><llaveTransferencia>3623917870</llaveTransferencia><mtcn>zu5soUXITlk9qx6BO0KS9w</mtcn><mtcnNuevo>kHGr1cePe-t37GIQ9V6NX8kQCf6g1UqNcWQFEOAlY4M</mtcnNuevo><mensajeEnvio></mensajeEnvio><montos><montoTotal>4d1ArYRZ4jHScWGb9LeNMg</montoTotal><montoPago>E199h6OKzohjW9n1eBcUcQ</montoPago><montoPrincipal>bdKUtQY76TfcBrF7yM6ADg</montoPrincipal><cargos>9SDWpq5i2PKZ7MsYkkDMgA</cargos><tipoDeCambio>DFaRUTxZWkWcYbFkqQEW2w</tipoDeCambio></montos><paisDestino><codigoPais>MX</codigoPais><codigoMoneda>MXN</codigoMoneda><codigoPaisMM>MEX</codigoPaisMM></paisDestino><paisOrigen><codigoPais>US</codigoPais><codigoMoneda>USD</codigoMoneda><codigoPaisMM>USA</codigoPaisMM></paisOrigen><cuenta></cuenta><estatus>LISTO PARA PAGAR</estatus><fechaEnvio>06-09-19 </fechaEnvio><horaEnvio>0213P EDT</horaEnvio><idOperador>273562</idOperador></remesa><codigosAgregacion /></txn></response></ns3:consultarMtcnResponse></soap:Body></soap:Envelope>");
                     //SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns3:consultarMtcnResponse xmlns:ns2=\"http://www.westernunion.com/schema/xrsi\" xmlns:ns3=\"http://ws.elektra.com/\"><response><uid>UID010008108797</uid><resultado><codigo>C60006</codigo><mensaje>U0206 MONEY-TRANSFER NOT FOR YOUR NETWORK</mensaje></resultado><idFlujo>UID010008108799</idFlujo></response></ns3:consultarMtcnResponse></soap:Body></soap:Envelope>");
                     //Wester
                     //SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns3:consultarMtcnResponse xmlns:ns2=\"http://www.westernunion.com/schema/xrsi\" xmlns:ns3=\"http://ws.elektra.com/\"><response><uid>UID409803727962</uid><resultado><codigo>C00000</codigo><mensaje>Consulta Exitosa</mensaje></resultado><idFlujo>UID409803727963</idFlujo><txn><beneficiario><nombre>JOSE LUIS</nombre><apellidoPaterno>LOPEZ</apellidoPaterno><apellidoMaterno>PORTILLO</apellidoMaterno><estado>ESTADO DE MEXICO</estado><ciudad>TEPOTZOTLAN</ciudad><codigoPostal></codigoPostal><calle></calle><telefono></telefono></beneficiario><remitente><nombre>JULIO </nombre><apellidoPaterno>AMADO</apellidoPaterno><apellidoMaterno></apellidoMaterno><estado>GA</estado><ciudad>DORAVILLE</ciudad><codigoPostal>30340</codigoPostal><calle>3852 MCELROY RD APT F-6</calle><telefono>6782923697</telefono></remitente><remesa><llaveTransferencia>3624020337</llaveTransferencia><mtcn>vo7ok1HGwIrnOrAwXgpmAA</mtcn><mtcnNuevo>CVEkNgR73pRnKJ785cTQFeoh9Dk7-IjFAtQ493qpzO0</mtcnNuevo><mensajeEnvio></mensajeEnvio><montos><montoTotal>Yv7J75ulthqv0HFaFqji1Q</montoTotal><montoPago>bjtnQOGp1qGXHj9IQ1ib8Q</montoPago><montoPrincipal>bdKUtQY76TfcBrF7yM6ADg</montoPrincipal><cargos>5ld5qrdTGJjMVdyNRM0NUA</cargos><tipoDeCambio>Eq7onQnTAJn0JoVF_weGsA</tipoDeCambio></montos><paisDestino><codigoPais>MX</codigoPais><codigoMoneda>MXN</codigoMoneda><codigoPaisMM>MEX</codigoPaisMM></paisDestino><paisOrigen><codigoPais>US</codigoPais><codigoMoneda>USD</codigoMoneda><codigoPaisMM>USA</codigoPaisMM></paisOrigen><cuenta></cuenta><estatus>LISTO PARA PAGAR</estatus><fechaEnvio>10-08-19 </fechaEnvio><horaEnvio>0733A EDT</horaEnvio><idOperador>318811</idOperador></remesa><codigosAgregacion /></txn></response></ns3:consultarMtcnResponse></soap:Body></soap:Envelope>");
                     //Orldandi
-                    SetResponse("<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><soapenv:Body><busquedaTransacResponse soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"><busquedaTransacReturn href=\"#id0\" /></busquedaTransacResponse><multiRef id=\"id0\" soapenc:root=\"0\" soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" xsi:type=\"ns1:ReceiveMoneyResponse\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:ns1=\"urn:RR\"><canal xsi:type=\"xsd:string\">1</canal><consume xsi:type=\"xsd:int\">0</consume><data xsi:type=\"soapenc:Array\" soapenc:arrayType=\"ns1:ReceiveMoneyData[1]\" xmlns:ns2=\"http://www.w3.org/2002/12/soap-encoding\"><item href=\"#id1\" /></data><idFlujo xsi:type=\"xsd:string\">UID462405472557</idFlujo><msj xsi:type=\"xsd:string\">Ok</msj><msjEnvio xsi:type=\"xsd:string\"></msjEnvio><neg xsi:type=\"xsd:string\">ORL</neg><numMatches xsi:type=\"xsd:int\">1</numMatches><oper xsi:type=\"xsd:string\">165516</oper><pais xsi:type=\"xsd:string\">1</pais><res xsi:type=\"xsd:int\">1</res><suc xsi:type=\"xsd:string\">4624</suc><uid xsi:type=\"xsd:string\">UID462405472558</uid></multiRef><multiRef id=\"id1\" soapenc:root=\"0\" soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" xsi:type=\"ns3:ReceiveMoneyData\" xmlns:ns3=\"urn:RR\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\"><apMatBen xsi:type=\"xsd:string\"></apMatBen><apMatRem xsi:type=\"xsd:string\"></apMatRem><apPatBen xsi:type=\"xsd:string\">LOPEZ</apPatBen><apPatRem xsi:type=\"xsd:string\">GULLIAN</apPatRem><cargos xsi:type=\"xsd:double\">8.0</cargos><cdadBen xsi:type=\"xsd:string\">CALI</cdadBen><cdadRem xsi:type=\"xsd:string\">NEWARK</cdadRem><cpBen xsi:type=\"xsd:string\"></cpBen><cpRem xsi:type=\"xsd:string\">07303</cpRem><cta xsi:type=\"xsd:string\"></cta><dirBen xsi:type=\"xsd:string\"></dirBen><dirRem xsi:type=\"xsd:string\">232 adoyade</dirRem><edoBen xsi:type=\"xsd:string\">CALI</edoBen><edoRem xsi:type=\"xsd:string\">NJ</edoRem><fecEnvio xsi:type=\"xsd:string\">08-19-19</fecEnvio><horaEnv xsi:type=\"xsd:string\">0615P EDT</horaEnv><monKeyTransf xsi:type=\"xsd:string\">3624017513</monKeyTransf><montoBruto xsi:type=\"xsd:double\">16.0</montoBruto><montoPay xsi:type=\"xsd:double\">104.0</montoPay><montoPrinc xsi:type=\"xsd:double\">8.0</montoPrinc><mtcn xsi:type=\"xsd:string\">7081541064</mtcn><newMtcn xsi:type=\"xsd:string\">1923187081541064</newMtcn><nomBen xsi:type=\"xsd:string\">IGNACIO</nomBen><nomRem xsi:type=\"xsd:string\">PEDRO</nomRem><paisCodeBen xsi:type=\"xsd:string\">MX</paisCodeBen><paisCodeRem xsi:type=\"xsd:string\">US</paisCodeRem><paisMonBen xsi:type=\"xsd:string\">MXN</paisMonBen><paisMonRem xsi:type=\"xsd:string\">USD</paisMonRem><status xsi:type=\"xsd:string\">LISTO PARA PAGAR</status><telBen xsi:type=\"xsd:string\"></telBen><telRem xsi:type=\"xsd:string\">3265987412</telRem></multiRef></soapenv:Body></soapenv:Envelope>");
+                    //SetResponse("<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><soapenv:Body><busquedaTransacResponse soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"><busquedaTransacReturn href=\"#id0\" /></busquedaTransacResponse><multiRef id=\"id0\" soapenc:root=\"0\" soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" xsi:type=\"ns1:ReceiveMoneyResponse\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:ns1=\"urn:RR\"><canal xsi:type=\"xsd:string\">1</canal><consume xsi:type=\"xsd:int\">0</consume><data xsi:type=\"soapenc:Array\" soapenc:arrayType=\"ns1:ReceiveMoneyData[1]\" xmlns:ns2=\"http://www.w3.org/2002/12/soap-encoding\"><item href=\"#id1\" /></data><idFlujo xsi:type=\"xsd:string\">UID462405472557</idFlujo><msj xsi:type=\"xsd:string\">Ok</msj><msjEnvio xsi:type=\"xsd:string\"></msjEnvio><neg xsi:type=\"xsd:string\">ORL</neg><numMatches xsi:type=\"xsd:int\">1</numMatches><oper xsi:type=\"xsd:string\">165516</oper><pais xsi:type=\"xsd:string\">1</pais><res xsi:type=\"xsd:int\">1</res><suc xsi:type=\"xsd:string\">4624</suc><uid xsi:type=\"xsd:string\">UID462405472558</uid></multiRef><multiRef id=\"id1\" soapenc:root=\"0\" soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" xsi:type=\"ns3:ReceiveMoneyData\" xmlns:ns3=\"urn:RR\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\"><apMatBen xsi:type=\"xsd:string\"></apMatBen><apMatRem xsi:type=\"xsd:string\"></apMatRem><apPatBen xsi:type=\"xsd:string\">LOPEZ</apPatBen><apPatRem xsi:type=\"xsd:string\">GULLIAN</apPatRem><cargos xsi:type=\"xsd:double\">8.0</cargos><cdadBen xsi:type=\"xsd:string\">CALI</cdadBen><cdadRem xsi:type=\"xsd:string\">NEWARK</cdadRem><cpBen xsi:type=\"xsd:string\"></cpBen><cpRem xsi:type=\"xsd:string\">07303</cpRem><cta xsi:type=\"xsd:string\"></cta><dirBen xsi:type=\"xsd:string\"></dirBen><dirRem xsi:type=\"xsd:string\">232 adoyade</dirRem><edoBen xsi:type=\"xsd:string\">CALI</edoBen><edoRem xsi:type=\"xsd:string\">NJ</edoRem><fecEnvio xsi:type=\"xsd:string\">08-19-19</fecEnvio><horaEnv xsi:type=\"xsd:string\">0615P EDT</horaEnv><monKeyTransf xsi:type=\"xsd:string\">3624017513</monKeyTransf><montoBruto xsi:type=\"xsd:double\">16.0</montoBruto><montoPay xsi:type=\"xsd:double\">104.0</montoPay><montoPrinc xsi:type=\"xsd:double\">8.0</montoPrinc><mtcn xsi:type=\"xsd:string\">7081541064</mtcn><newMtcn xsi:type=\"xsd:string\">1923187081541064</newMtcn><nomBen xsi:type=\"xsd:string\">IGNACIO</nomBen><nomRem xsi:type=\"xsd:string\">PEDRO</nomRem><paisCodeBen xsi:type=\"xsd:string\">MX</paisCodeBen><paisCodeRem xsi:type=\"xsd:string\">US</paisCodeRem><paisMonBen xsi:type=\"xsd:string\">MXN</paisMonBen><paisMonRem xsi:type=\"xsd:string\">USD</paisMonRem><status xsi:type=\"xsd:string\">LISTO PARA PAGAR</status><telBen xsi:type=\"xsd:string\"></telBen><telRem xsi:type=\"xsd:string\">3265987412</telRem></multiRef></soapenv:Body></soapenv:Envelope>");
+                    SetResponse("<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"> <soapenv:Body> <busquedaTransacResponse soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"> <busquedaTransacReturn href=\"#id0\" /> </busquedaTransacResponse> <multiRef id=\"id0\" soapenc:root=\"0\" soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" xsi:type=\"ns1:ReceiveMoneyResponse\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:ns1=\"urn:RR\"> <canal xsi:type=\"xsd:string\">1</canal> <consume xsi:type=\"xsd:int\">0</consume> <data xsi:type=\"soapenc:Array\" soapenc:arrayType=\"ns1:ReceiveMoneyData[1]\" xmlns:ns2=\"http://www.w3.org/2002/12/soap-encoding\"> <item href=\"#id1\" /> </data> <idFlujo xsi:type=\"xsd:string\">UID211112008588</idFlujo> <msj xsi:type=\"xsd:string\">Ok</msj> <msjEnvio xsi:type=\"xsd:string\"></msjEnvio> <neg xsi:type=\"xsd:string\">VIGO</neg> <numMatches xsi:type=\"xsd:int\">1</numMatches> <oper xsi:type=\"xsd:string\">81040</oper> <pais xsi:type=\"xsd:string\">1</pais> <res xsi:type=\"xsd:int\">1</res> <suc xsi:type=\"xsd:string\">2111</suc> <uid xsi:type=\"xsd:string\">UID211112008590</uid> </multiRef> <multiRef id=\"id1\" soapenc:root=\"0\" soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" xsi:type=\"ns3:ReceiveMoneyData\" xmlns:ns3=\"urn:RR\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\"> <apMatBen xsi:type=\"xsd:string\">DE LOS SANTOS</apMatBen> <apMatRem xsi:type=\"xsd:string\">RINCONCILLO</apMatRem> <apPatBen xsi:type=\"xsd:string\">RINCONCILLO</apPatBen> <apPatRem xsi:type=\"xsd:string\">GALVAN</apPatRem> <cargos xsi:type=\"xsd:double\">10.0</cargos> <cdadBen xsi:type=\"xsd:string\">COMONFORT</cdadBen> <cdadRem xsi:type=\"xsd:string\">RICHARSOND</cdadRem> <cpBen xsi:type=\"xsd:string\"></cpBen> <cpRem xsi:type=\"xsd:string\">75080</cpRem> <cta xsi:type=\"xsd:string\"></cta> <dirBen xsi:type=\"xsd:string\"></dirBen> <dirRem xsi:type=\"xsd:string\">923 SAN PAUL DR</dirRem> <edoBen xsi:type=\"xsd:string\">GUANAJUATO</edoBen> <edoRem xsi:type=\"xsd:string\">TX</edoRem> <fecEnvio xsi:type=\"xsd:string\">06-08-19</fecEnvio> <horaEnv xsi:type=\"xsd:string\">0659P EDT</horaEnv> <monKeyTransf xsi:type=\"xsd:string\">3624003110</monKeyTransf> <montoBruto xsi:type=\"xsd:double\">1010.0</montoBruto> <montoPay xsi:type=\"xsd:double\">19808.0</montoPay> <montoPrinc xsi:type=\"xsd:double\">1000.0</montoPrinc> <mtcn xsi:type=\"xsd:string\">9725698160</mtcn> <newMtcn xsi:type=\"xsd:string\">1915989725698160</newMtcn> <nomBen xsi:type=\"xsd:string\">EULALIA</nomBen> <nomRem xsi:type=\"xsd:string\">JOSE JUVENTINO</nomRem> <paisCodeBen xsi:type=\"xsd:string\">MX</paisCodeBen> <paisCodeRem xsi:type=\"xsd:string\">US</paisCodeRem> <paisMonBen xsi:type=\"xsd:string\">MXN</paisMonBen> <paisMonRem xsi:type=\"xsd:string\">USD</paisMonRem> <status xsi:type=\"xsd:string\">LISTO PARA PAGAR</status> <telBen xsi:type=\"xsd:string\"></telBen> <telRem xsi:type=\"xsd:string\">2142294067</telRem> </multiRef> </soapenv:Body></soapenv:Envelope>");
                 }
-                else if (Request.Contains("pagarMtcn"))
+                else if (Request.Contains("busquedaTransac"))
+                    SetResponse("<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><soapenv:Body><busquedaTransacResponse soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"><busquedaTransacReturn href=\"#id0\" /></busquedaTransacResponse><multiRef id=\"id0\" soapenc:root=\"0\" soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" xsi:type=\"ns1:ReceiveMoneyResponse\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:ns1=\"urn:RR\"><canal xsi:type=\"xsd:string\">1</canal><consume xsi:type=\"xsd:int\">0</consume><data xsi:type=\"soapenc:Array\" soapenc:arrayType=\"ns1:ReceiveMoneyData[1]\" xmlns:ns2=\"http://www.w3.org/2002/12/soap-encoding\"><item href=\"#id1\" /></data><idFlujo xsi:type=\"xsd:string\">UID462405472557</idFlujo><msj xsi:type=\"xsd:string\">Ok</msj><msjEnvio xsi:type=\"xsd:string\"></msjEnvio><neg xsi:type=\"xsd:string\">ORL</neg><numMatches xsi:type=\"xsd:int\">1</numMatches><oper xsi:type=\"xsd:string\">165516</oper><pais xsi:type=\"xsd:string\">1</pais><res xsi:type=\"xsd:int\">1</res><suc xsi:type=\"xsd:string\">4624</suc><uid xsi:type=\"xsd:string\">UID462405472558</uid></multiRef><multiRef id=\"id1\" soapenc:root=\"0\" soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" xsi:type=\"ns3:ReceiveMoneyData\" xmlns:ns3=\"urn:RR\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\"><apMatBen xsi:type=\"xsd:string\"></apMatBen><apMatRem xsi:type=\"xsd:string\"></apMatRem><apPatBen xsi:type=\"xsd:string\">LOPEZ</apPatBen><apPatRem xsi:type=\"xsd:string\">GULLIAN</apPatRem><cargos xsi:type=\"xsd:double\">8.0</cargos><cdadBen xsi:type=\"xsd:string\">CALI</cdadBen><cdadRem xsi:type=\"xsd:string\">NEWARK</cdadRem><cpBen xsi:type=\"xsd:string\"></cpBen><cpRem xsi:type=\"xsd:string\">07303</cpRem><cta xsi:type=\"xsd:string\"></cta><dirBen xsi:type=\"xsd:string\"></dirBen><dirRem xsi:type=\"xsd:string\">232 adoyade</dirRem><edoBen xsi:type=\"xsd:string\">CALI</edoBen><edoRem xsi:type=\"xsd:string\">NJ</edoRem><fecEnvio xsi:type=\"xsd:string\">08-19-19</fecEnvio><horaEnv xsi:type=\"xsd:string\">0615P EDT</horaEnv><monKeyTransf xsi:type=\"xsd:string\">3624017513</monKeyTransf><montoBruto xsi:type=\"xsd:double\">16.0</montoBruto><montoPay xsi:type=\"xsd:double\">104.0</montoPay><montoPrinc xsi:type=\"xsd:double\">8.0</montoPrinc><mtcn xsi:type=\"xsd:string\">7081541064</mtcn><newMtcn xsi:type=\"xsd:string\">1923187081541064</newMtcn><nomBen xsi:type=\"xsd:string\">IGNACIO</nomBen><nomRem xsi:type=\"xsd:string\">PEDRO</nomRem><paisCodeBen xsi:type=\"xsd:string\">MX</paisCodeBen><paisCodeRem xsi:type=\"xsd:string\">US</paisCodeRem><paisMonBen xsi:type=\"xsd:string\">MXN</paisMonBen><paisMonRem xsi:type=\"xsd:string\">USD</paisMonRem><status xsi:type=\"xsd:string\">LISTO PARA PAGAR</status><telBen xsi:type=\"xsd:string\"></telBen><telRem xsi:type=\"xsd:string\">3265987412</telRem></multiRef></soapenv:Body></soapenv:Envelope>");
+                else if (Request.Contains("pagaTransac"))
                 {
                     //Wuestern
                     //SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns3:pagarMtcnResponse xmlns:ns2=\"http://www.westernunion.com/schema/xrsi\" xmlns:ns3=\"http://ws.elektra.com/\"><response><uid>UID113513832582</uid><resultado><codigo>C00000</codigo><mensaje>Operación Exitosa</mensaje></resultado><compliance>K1hCicKVV9gKCVB3CZN3oA9KT02xAi4YNekFswvatEZWjuPrQYwn97_1AGXRwzzowTgNWvxRNctm96dZU5rZ-V3Lh8ytqZGxM2cDt9APvUrHhyICPJv9bEBYNnX3_CPXCEMT5V5YKG8V1M0GakORZF_6g9dzA0OC3jfJooGbb5YRn5q0K7aJZSfPmWbp1gFsWUs7TYzoEghv7jFHiu7JcJeDfYWn5-oPrBhhLd_qaGHy6fKPpnKWDszFVks5IpaTx5wLSQAmtf7wCIOgb2DxiQ</compliance><fechaOperacion>06-11-2019 18:19</fechaOperacion><mtcn>zu5soUXITlk9qx6BO0KS9w</mtcn><codigosAgregacion /><historicoAgregacion /></response></ns3:pagarMtcnResponse></soap:Body></soap:Envelope>");
@@ -140,7 +210,7 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void ResOfac2()
         {
-
+            HttpContext.Current.Response.ContentType = "application/xml";
             if (Request.Contains("busquedaTransac"))
             {
 
@@ -150,6 +220,7 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void PagosBTS()
         {
+            HttpContext.Current.Response.ContentType = "application/xml";
             if (!string.IsNullOrEmpty(Request))
             {
                 if (Request.Contains("consultarMtcn"))
@@ -170,6 +241,7 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void PagosDRS()
         {
+            HttpContext.Current.Response.ContentType = "application/xml";
             if (!string.IsNullOrEmpty(Request))
             {
                 if (Request.Contains("consultaMtcn"))
@@ -195,6 +267,7 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void PagosXOOM()
         {
+            HttpContext.Current.Response.ContentType = "application/xml";
             if (!string.IsNullOrEmpty(Request))
             {
                 if (Request.Contains("consultarMtcn"))
@@ -211,7 +284,8 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void PagosInterMex()
         {
-            if (!string.IsNullOrEmpty(Request))
+            HttpContext.Current.Response.ContentType = "application/xml";
+            //if (!string.IsNullOrEmpty(Request))
             {
                 if (Request.Contains("busqTxnXMtcn"))
                 {
@@ -228,6 +302,7 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void PagosViAmericas()
         {
+            HttpContext.Current.Response.ContentType = "application/xml";
             if (!string.IsNullOrEmpty(Request))
             {
                 if (Request.Contains("consultarMtcn"))
@@ -245,6 +320,7 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void PagosTransNetwork()
         {
+            HttpContext.Current.Response.ContentType = "application/xml";
             if (!string.IsNullOrEmpty(Request))
             {
                 if (Request.Contains("consultarMtcn"))
@@ -262,6 +338,7 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void PagosBarri()
         {
+            HttpContext.Current.Response.ContentType = "application/xml";
             if (!string.IsNullOrEmpty(Request))
             {
                 if (Request.Contains("consultarMtcn"))
@@ -279,6 +356,7 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void CatalogoPaisMonedaWU()
         {
+            HttpContext.Current.Response.ContentType = "application/xml";
             if (!string.IsNullOrEmpty(Request))
             {
                 //if (Request.Contains("getCatalogoPaisMoneda"))
@@ -302,6 +380,7 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void AvisoPriv()
         {
+            HttpContext.Current.Response.ContentType = "application/xml";
             //if (!string.IsNullOrEmpty(Request))
             //{
             //if (Request.Contains("Monto"))
@@ -313,6 +392,7 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void EnviosWu()
         {
+            HttpContext.Current.Response.ContentType = "application/xml";
             //if (!string.IsNullOrEmpty(Request))
             //{
             if (Request.Contains("getCatalogoPaisMoneda"))
@@ -340,6 +420,14 @@ namespace Mock_WS_Central.Pagos
             {
                 SetResponse("0");
             }
+        }
+
+
+        [WebMethod]
+        public void BusCU()
+        {
+            SetResponse("{  \"lstResponse \": [ {  \"pais \":  \"1 \",  \"canal \":  \"1 \",  \"sucursal \":  \"4037 \",  \"folio \":  \"2046 \",  \"nombre \":  \"JESUS \",  \"apellidoPaterno \":  \"CRUZ \",  \"apellidoMaterno \":  \"VICTORIA \",  \"sexo \":  \"M \",  \"tipoPersona \":  \"FI \",  \"fechaNacimiento \":  \"1987-08-22 \",  \"rfc \":  \"MEHF8605274E4 \",  \"curp \":  \"CUVJ870822HPLRCS02 \",  \"lugarNacimiento \":  \" \",  \"nacionalidad \":  \"1 \",  \"estadoCivil \":  \"1 \",  \"correoElectronico \":  \"jesuscv_isc@live.com.mx \",  \"calle \":  \"CDA HIDALGO 5 5 \",  \"numExterior \":  \" \",  \"numInterior \":  \" \",  \"colonia \":  \"EL PINAL \",  \"poblacion \":  \"TEZIUTLAN \",  \"estado \":  \"PL \",  \"codigoPostal \":  \"73890 \",  \"lada \":  \"52 \",  \"telefono \":  \"5560978126 \",  \"extencion \":  \" \",  \"actividad \":  \"63 \",  \"fechaAltaAmigo \":  \" \",  \"fechaModifAmigo \":  \" \",  \"tipoTarjeta \":  \" \",  \"numeroTarjeta \":  \" \",  \"status \":  \" \",  \"ocr \":  \" \",  \"viveOtroPais \":  \" \",  \"listaNegraTrans \":  \" \",  \"listaNegraDivisa \":  \" \",  \"pld \":  \" \",  \"statusCA \":  \"3 \",  \"identificaciones \": [ {  \"identificacion \":  \" \",  \"folioIdentificacion \":  \" \",  \"fechaEmi \":  \" \",  \"fechaExp \":  \" \",  \"fechaModificacionIdentificacion \":  \" \" } ] } ],  \"issue \": {  \"issue \": false,  \"fieldIssues \": [] }}");
+         
         }
 
         private string Request = string.Empty;
