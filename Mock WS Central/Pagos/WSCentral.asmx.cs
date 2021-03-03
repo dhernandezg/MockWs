@@ -38,13 +38,13 @@ namespace Mock_WS_Central.Pagos
             if (!string.IsNullOrEmpty(Request))
             {
                 if (Request.Contains("busquedaConfSuc"))
-                    SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:busquedaConfSucResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><respuesta><codResp>C00000</codResp><msgResp>Consulta Exitosa</msgResp></respuesta><datosSucursal><banderaSucursalNegra>0</banderaSucursalNegra><porcentajeCoincidencia>0</porcentajeCoincidencia><cierreSucursal>1</cierreSucursal><msgCierreSucursal>-</msgCierreSucursal><firmaDig>0</firmaDig><rtf>0</rtf><operacionesRtf>0</operacionesRtf><bndEditaCte>0</bndEditaCte><porcentajeEditMaximoCte>0</porcentajeEditMaximoCte></datosSucursal><pfp><mntoMax>15000</mntoMax><numInt>2</numInt></pfp><promo><negParticipantes>9P,8P,7P,6P,5P,4P,3P,2P,1P,17P,16P,14P,13P,12P,10P</negParticipantes><promosActivas>1</promosActivas></promo><semaforoFonetico><autorizadorExt>1</autorizadorExt><autorizadorInt>1</autorizadorInt><porcentajeFonFin>85</porcentajeFonFin><porcentajeFonIni>50</porcentajeFonIni></semaforoFonetico><surfing><limBloqBsqMtcnCat>20</limBloqBsqMtcnCat><limBloqBsqMtcnGte>10</limBloqBsqMtcnGte><limBloqBsqNomCat>5</limBloqBsqNomCat><mtoLimPagoTxnBsqXNom>15000</mtoLimPagoTxnBsqXNom></surfing><valorAgregado><valorAgregadoActivo>0</valorAgregadoActivo></valorAgregado><uid>UID211112008557</uid><operacionSospechosa><catTransacionSospechosa>1*1. La conducta del usuario parece sospechosa.|2*2. La autenticidad de los datos y/o identificación parece dudosa.|3*3. El usuario intento sobornar, persuadir o intimidar con el propósito de realizar la operación de remesa.|4*4. Parece que el usuario quiere evadir nuestros controles.|5*5. El usuario puede estar operando en grupo.</catTransacionSospechosa><subCatTransacionSospechosa>1*1*1.1 Usuario realiza preguntas sobre comisiones, tiempo de disponibilidad, horario, efectivo disponible, inmediatez / rapidez / seguridad, canales, monto máximo a enviar sin insistir.|1*2*1.2 Usuario no recuerda el nombre completo de la persona que le envía dinero o a quien le enviará dinero. (Nombre y apellido)|1*3*1.3 Usuario que envía/recibe dinero de varias personas sin tener una relación familiar aparente.|1*4*1.4 El usuario se presenta con acompañante que habla por él.|1*5*1.5 Usuario envía dinero derivado de una llamada telefónica sospechosa.|1*6*1.6 El usuario no puede dar el MTCN sin leerlo.|2*7*2.1 Usuario no puede dar su nombre o fecha de nacimiento sin leerlos.|2*8*2.2 Se sospecha que el usuario ha realizado operaciones con identificaciones con diferentes nombres o datos.|2*9*2.3 La identificación presenta irregularidades.|2*10*2.4 El usuario no se parece al de la fotografía de la identificación presentada.|3*0*|4*11*4.1 Parece que conoce como evadir nuestros límites operativos. (Datos incompletos, información falsa, etc.)|4*12*4.2 Usuario pregunta insistentemente sobre los límites operativos.|4*13*4.3 Usuario parece que proporciona información falsa o incompleta para evadir límites operativos|5*14*5.1 El usuario viene acompañado con varias personas que le dicen qué hacer sin una razón aparente.|5*15*5.2 Parece que varios usuarios comparten la misma información para realizar operaciones.|5*16*5.3 Dos o más usuarios realizan operaciones consecutivas con el mismo monto y al mismo destino de manera intencional.</subCatTransacionSospechosa></operacionSospechosa></response></ns2:busquedaConfSucResponse></soap:Body></soap:Envelope>");
+                    //SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:busquedaConfSucResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><respuesta><codResp>C00000</codResp><msgResp>Consulta Exitosa</msgResp></respuesta><datosSucursal><banderaSucursalNegra>0</banderaSucursalNegra><porcentajeCoincidencia>0</porcentajeCoincidencia><cierreSucursal>1</cierreSucursal><msgCierreSucursal>-</msgCierreSucursal><firmaDig>0</firmaDig><rtf>0</rtf><operacionesRtf>0</operacionesRtf><bndEditaCte>0</bndEditaCte><porcentajeEditMaximoCte>0</porcentajeEditMaximoCte></datosSucursal><pfp><mntoMax>15000</mntoMax><numInt>2</numInt></pfp><promo><negParticipantes>9P,8P,7P,6P,5P,4P,3P,2P,1P,17P,16P,14P,13P,12P,10P</negParticipantes><promosActivas>1</promosActivas></promo><semaforoFonetico><autorizadorExt>1</autorizadorExt><autorizadorInt>1</autorizadorInt><porcentajeFonFin>85</porcentajeFonFin><porcentajeFonIni>50</porcentajeFonIni></semaforoFonetico><surfing><limBloqBsqMtcnCat>20</limBloqBsqMtcnCat><limBloqBsqMtcnGte>10</limBloqBsqMtcnGte><limBloqBsqNomCat>5</limBloqBsqNomCat><mtoLimPagoTxnBsqXNom>15000</mtoLimPagoTxnBsqXNom></surfing><valorAgregado><valorAgregadoActivo>0</valorAgregadoActivo></valorAgregado><uid>UID211112008557</uid><operacionSospechosa><catTransacionSospechosa>1*1. La conducta del usuario parece sospechosa.|2*2. La autenticidad de los datos y/o identificación parece dudosa.|3*3. El usuario intento sobornar, persuadir o intimidar con el propósito de realizar la operación de remesa.|4*4. Parece que el usuario quiere evadir nuestros controles.|5*5. El usuario puede estar operando en grupo.</catTransacionSospechosa><subCatTransacionSospechosa>1*1*1.1 Usuario realiza preguntas sobre comisiones, tiempo de disponibilidad, horario, efectivo disponible, inmediatez / rapidez / seguridad, canales, monto máximo a enviar sin insistir.|1*2*1.2 Usuario no recuerda el nombre completo de la persona que le envía dinero o a quien le enviará dinero. (Nombre y apellido)|1*3*1.3 Usuario que envía/recibe dinero de varias personas sin tener una relación familiar aparente.|1*4*1.4 El usuario se presenta con acompañante que habla por él.|1*5*1.5 Usuario envía dinero derivado de una llamada telefónica sospechosa.|1*6*1.6 El usuario no puede dar el MTCN sin leerlo.|2*7*2.1 Usuario no puede dar su nombre o fecha de nacimiento sin leerlos.|2*8*2.2 Se sospecha que el usuario ha realizado operaciones con identificaciones con diferentes nombres o datos.|2*9*2.3 La identificación presenta irregularidades.|2*10*2.4 El usuario no se parece al de la fotografía de la identificación presentada.|3*0*|4*11*4.1 Parece que conoce como evadir nuestros límites operativos. (Datos incompletos, información falsa, etc.)|4*12*4.2 Usuario pregunta insistentemente sobre los límites operativos.|4*13*4.3 Usuario parece que proporciona información falsa o incompleta para evadir límites operativos|5*14*5.1 El usuario viene acompañado con varias personas que le dicen qué hacer sin una razón aparente.|5*15*5.2 Parece que varios usuarios comparten la misma información para realizar operaciones.|5*16*5.3 Dos o más usuarios realizan operaciones consecutivas con el mismo monto y al mismo destino de manera intencional.</subCatTransacionSospechosa></operacionSospechosa></response></ns2:busquedaConfSucResponse></soap:Body></soap:Envelope>");
+                    SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:busquedaConfSucResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><respuesta><codResp>C00000</codResp><msgResp>Consulta Exitosa</msgResp></respuesta><datosSucursal><banderaSucursalNegra>1</banderaSucursalNegra><porcentajeCoincidencia>1</porcentajeCoincidencia><cierreSucursal>1</cierreSucursal><msgCierreSucursal>-</msgCierreSucursal><firmaDig>0</firmaDig><rtf>1</rtf><operacionesRtf>1</operacionesRtf><bndEditaCte>0</bndEditaCte><porcentajeEditMaximoCte>0</porcentajeEditMaximoCte></datosSucursal><pfp><activo>1</activo><mntoMax>20000</mntoMax><numInt>2</numInt></pfp><promo><negParticipantes>9P,8P,7P,70V,70C,6P,6E,5P,5E,4P,3P,2P,1P,19P,18P,17P,16P,15P,14P,13P,12P,10P</negParticipantes><promosActivas>1</promosActivas></promo><semaforoFonetico><autorizadorExt>1</autorizadorExt><autorizadorInt>1</autorizadorInt><porcentajeFonFin>85</porcentajeFonFin><porcentajeFonIni>50</porcentajeFonIni></semaforoFonetico><surfing><limBloqBsqMtcnCat>20</limBloqBsqMtcnCat><limBloqBsqMtcnGte>10</limBloqBsqMtcnGte><limBloqBsqNomCat>5</limBloqBsqNomCat><mtoLimPagoTxnBsqXNom>15003</mtoLimPagoTxnBsqXNom></surfing><valorAgregado><valorAgregadoActivo>0</valorAgregadoActivo></valorAgregado><uid>UID462431851818</uid><operacionSospechosa><catTransacionSospechosa>1*1. La conducta del usuario parece sospechosa.|2*2. La autenticidad de los datos y/o identificación parece dudosa.|3*3. El usuario intento sobornar, persuadir o intimidar con el propósito de realizar la operación de remesa.|4*4. Parece que el usuario quiere evadir nuestros controles.|5*5. El usuario puede estar operando en grupo.</catTransacionSospechosa><subCatTransacionSospechosa>1*1*1.1 Usuario realiza preguntas sobre comisiones, tiempo de disponibilidad, horario, efectivo disponible, inmediatez / rapidez / seguridad, canales, monto máximo a enviar sin insistir.|1*2*1.2 Usuario no recuerda el nombre completo de la persona que le envía dinero o a quien le enviará dinero. (Nombre y apellido)|1*3*1.3 Usuario que envía/recibe dinero de varias personas sin tener una relación familiar aparente.|1*4*1.4 El usuario se presenta con acompañante que habla por él.|1*5*1.5 Usuario envía dinero derivado de una llamada telefónica sospechosa.|1*6*1.6 El usuario no puede dar el MTCN sin leerlo.|2*7*2.1 Usuario no puede dar su nombre o fecha de nacimiento sin leerlos.|2*8*2.2 Se sospecha que el usuario ha realizado operaciones con identificaciones con diferentes nombres o datos.|2*9*2.3 La identificación presenta irregularidades.|2*10*2.4 El usuario no se parece al de la fotografía de la identificación presentada.|3*0*|4*11*4.1 Parece que conoce como evadir nuestros límites operativos. (Datos incompletos, información falsa, etc.)|4*12*4.2 Usuario pregunta insistentemente sobre los límites operativos.|4*13*4.3 Usuario parece que proporciona información falsa o incompleta para evadir límites operativos|5*14*5.1 El usuario viene acompañado con varias personas que le dicen qué hacer sin una razón aparente.|5*15*5.2 Parece que varios usuarios comparten la misma información para realizar operaciones.|5*16*5.3 Dos o más usuarios realizan operaciones consecutivas con el mismo monto y al mismo destino de manera intencional.</subCatTransacionSospechosa></operacionSospechosa><estadisticas><banderaEstadisticas>1</banderaEstadisticas></estadisticas></response></ns2:busquedaConfSucResponse></soap:Body></soap:Envelope>");
             }
         }
         [WebMethod]
         public void validaRestricciones()
         {
-            HttpContext.Current.Response.ContentType = "application/xml";
             if (!string.IsNullOrEmpty(Request))
             {
                 if (Request.Contains("validaRestriccionesCte"))
@@ -59,7 +59,8 @@ namespace Mock_WS_Central.Pagos
                 {
                     //Limites rebasados
                     //SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:validaRemesaComercialResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><nivelRiesgo>0</nivelRiesgo><nivelTxn>0</nivelTxn><transaccion><codigoPaisIso></codigoPaisIso></transaccion><acumulados><txnDia>0</txnDia><txnMes>3</txnMes><txnAnio>11</txnAnio><txnPagAnioOpe>12</txnPagAnioOpe><montoDia>3IubrNp6vRlIdOsSBk_1dg</montoDia><montoMes>aw7WRI-C40ZcRryZrAWGDw</montoMes><montoAnio>5dtPeAlaMh1lUucC_YPfPw</montoAnio><mtoMaxXEnv>3IubrNp6vRlIdOsSBk_1dg</mtoMaxXEnv></acumulados><puntos><actuales>0</actuales><xOperacion>0</xOperacion></puntos><camposReq></camposReq><resultado><codResp>CR1028</codResp><msgResp>No es posible finalizar la operacion, el cliente ha alcanzado los limites de monto acumulado mensual, en caso de tener dudas pide que se comunique al 01 800 3030 303 Opcion 1 o al 1579 4203 Opcion 1.</msgResp></resultado><uid>UID608829470476</uid></response></ns2:validaRemesaComercialResponse></soap:Body></soap:Envelope> ");
-                    SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:validaRemesaComercialResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><nivelRiesgo>1</nivelRiesgo><marcaCte>P1</marcaCte><nivelTxn>1</nivelTxn><transaccion><codigoPaisIso>USA</codigoPaisIso></transaccion><acumulados><txnDia>0</txnDia><txnMes>0</txnMes><txnAnio>0</txnAnio><txnPagAnioOpe>1</txnPagAnioOpe><montoDia>3IubrNp6vRlIdOsSBk_1dg</montoDia><montoMes>3IubrNp6vRlIdOsSBk_1dg</montoMes><montoAnio>3IubrNp6vRlIdOsSBk_1dg</montoAnio><mtoMaxXEnv>3IubrNp6vRlIdOsSBk_1dg</mtoMaxXEnv></acumulados><puntos><actuales>0</actuales><xOperacion>0</xOperacion></puntos><camposReq>CURP,RELAC,EMPRESA,EDONAC,TEL,NUMTXNS,MNTOTXNS,FECHVIG</camposReq><resultado><codResp>C00000</codResp><msgResp>Validacion correcta, puede continuar con la operacion.</msgResp></resultado><uid>UID462405679507</uid></response></ns2:validaRemesaComercialResponse></soap:Body></soap:Envelope>");
+                    //SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:validaRemesaComercialResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><nivelRiesgo>1</nivelRiesgo><marcaCte>P1</marcaCte><nivelTxn>1</nivelTxn><transaccion><codigoPaisIso>USA</codigoPaisIso></transaccion><acumulados><txnDia>0</txnDia><txnMes>0</txnMes><txnAnio>0</txnAnio><txnPagAnioOpe>1</txnPagAnioOpe><montoDia>3IubrNp6vRlIdOsSBk_1dg</montoDia><montoMes>3IubrNp6vRlIdOsSBk_1dg</montoMes><montoAnio>3IubrNp6vRlIdOsSBk_1dg</montoAnio><mtoMaxXEnv>3IubrNp6vRlIdOsSBk_1dg</mtoMaxXEnv></acumulados><puntos><actuales>0</actuales><xOperacion>0</xOperacion></puntos><camposReq>CURP,RELAC,EMPRESA,EDONAC,TEL,NUMTXNS,MNTOTXNS,FECHVIG</camposReq><resultado><codResp>C00000</codResp><msgResp>Validacion correcta, puede continuar con la operacion.</msgResp></resultado><uid>UID462405679507</uid></response></ns2:validaRemesaComercialResponse></soap:Body></soap:Envelope>");
+                    SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:validaRemesaComercialResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><nivelRiesgo>1</nivelRiesgo><marcaCte>P1</marcaCte><nivelTxn>1</nivelTxn><transaccion><codigoPaisIso>USA</codigoPaisIso></transaccion><acumulados><txnDia>0</txnDia><txnMes>0</txnMes><txnAnio>0</txnAnio><txnPagAnioOpe>1</txnPagAnioOpe><montoDia>3IubrNp6vRlIdOsSBk_1dg</montoDia><montoMes>3IubrNp6vRlIdOsSBk_1dg</montoMes><montoAnio>3IubrNp6vRlIdOsSBk_1dg</montoAnio><mtoMaxXEnv>3IubrNp6vRlIdOsSBk_1dg</mtoMaxXEnv></acumulados><infoAdicionalCte><fechaAlta>07/02/2021</fechaAlta><fechaUltimaOperacion>07/02/2021</fechaUltimaOperacion><txnDiaEnvio>0</txnDiaEnvio><txnDiaPago>0</txnDiaPago><txnMesEnvio>0</txnMesEnvio><txnMesPago>0</txnMesPago><txnAnioEnvio>0</txnAnioEnvio><txnAnioPago>0</txnAnioPago><montoDiaEnvio>3IubrNp6vRlIdOsSBk_1dg</montoDiaEnvio><montoDiaPago>3IubrNp6vRlIdOsSBk_1dg</montoDiaPago><montoMesEnvio>3IubrNp6vRlIdOsSBk_1dg</montoMesEnvio><montoMesPago>3IubrNp6vRlIdOsSBk_1dg</montoMesPago><montoAnioEnvio>3IubrNp6vRlIdOsSBk_1dg</montoAnioEnvio><montoAnioPago>3IubrNp6vRlIdOsSBk_1dg</montoAnioPago></infoAdicionalCte><puntos><actuales>0</actuales><xOperacion>0</xOperacion></puntos><camposReq>DOM_CP,NOM,APMAT,APPAT,DOM_CALLE,DOM_PAIS,ID_TIPO,DOM_COL,EMPRESARIO,DOM_EDO,DOM_NEXT,DOM_NINT,DOM_POB,FNAC,ID_FOLIO,NAL</camposReq><resultado><codResp>C00000</codResp><msgResp>Validacion correcta, puede continuar con la operacion.</msgResp></resultado><uid>UID830314395384</uid></response></ns2:validaRemesaComercialResponse></soap:Body></soap:Envelope>");
                 }
                 else if (Request.Contains("validaRemesa")) {
                     SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:validaRemesaResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><nivelRiesgo>1</nivelRiesgo><transaccion><codigoPaisIso>USA</codigoPaisIso></transaccion><acumulados><txnDia>0</txnDia><txnMes>0</txnMes><txnAnio>3</txnAnio><montoDia>3IubrNp6vRlIdOsSBk_1dg</montoDia><montoMes>3IubrNp6vRlIdOsSBk_1dg</montoMes><montoAnio>cwBlCI3rmDTk8P5RIm3dag</montoAnio><mtoMaxXEnv>3IubrNp6vRlIdOsSBk_1dg</mtoMaxXEnv></acumulados><puntos><actuales>120</actuales><xOperacion>0</xOperacion></puntos><camposReq>APPAT,DOM_PAIS,DOM_EDO,DOM_NEXT,DOM_NINT,FNAC,APMAT,DOM_COL,DOM_CP,ID_FOLIO,NOM,NAL,DOM_CALLE,DOM_POB,ID_TIPO,TEL</camposReq><resultado><codResp>C00000</codResp><msgResp>Validacion correcta, puede continuar con la operacion.</msgResp></resultado><uid>UID113513829676</uid></response></ns2:validaRemesaResponse></soap:Body></soap:Envelope>");
@@ -74,7 +75,6 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void validaRestriccionesEDD() 
         {
-            HttpContext.Current.Response.ContentType = "application/xml";
             if (Request.Contains("validaRestriccionesCte"))
             {
                 SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:validaRestriccionesCteResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><bloqReq>EDD</bloqReq><accionesReq></accionesReq><clienteUnico><idPais>0</idPais><idCanal>0</idCanal><idSucursal>0</idSucursal><idFolio>0</idFolio></clienteUnico><resultado><codResp>C00000</codResp><msgResp>El cliente no tiene acciones ni bloqueos pendientes.</msgResp></resultado><uid>UID462405394120</uid></response></ns2:validaRestriccionesCteResponse></soap:Body></soap:Envelope>");
@@ -84,7 +84,6 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void validaRestriccionesKYC()
         {
-            HttpContext.Current.Response.ContentType = "application/xml";
             if (Request.Contains("validaRestriccionesCte"))
             {
                 SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:validaRestriccionesCteResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><bloqReq>KYCR</bloqReq><accionesReq></accionesReq><clienteUnico><idPais>0</idPais><idCanal>0</idCanal><idSucursal>0</idSucursal><idFolio>0</idFolio></clienteUnico><resultado><codResp>C00000</codResp><msgResp>El cliente no tiene acciones ni bloqueos pendientes.</msgResp></resultado><uid>UID462405394120</uid></response></ns2:validaRestriccionesCteResponse></soap:Body></soap:Envelope>");
@@ -94,7 +93,6 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void ValidaRemesaBloqueado()
         {
-            HttpContext.Current.Response.ContentType = "application/xml";
             if (!string.IsNullOrEmpty(Request))
             {
                 if (Request.Contains("validaRestriccionesCte"))
@@ -121,7 +119,6 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void bsqListaOFAC()
         {
-            HttpContext.Current.Response.ContentType = "application/xml";
             SetResponse("<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><soapenv:Body><ns1:BsqListaOFACResponse xmlns=\"http://dineroexpress.elektra.com/BusquedaDex/ws/schemas\" xmlns:ns1=\"http://dineroexpress.elektra.com/BusquedaDex/ws/schemas\"><ns1:uid>UID211112020578</ns1:uid><ns1:bloqueoOFAC>0</ns1:bloqueoOFAC><ns1:mensajeLista>El cliente puede operar</ns1:mensajeLista><ns1:codigoMensaje>E</ns1:codigoMensaje><ns1:mensaje>OPERACION EXITOSA</ns1:mensaje></ns1:BsqListaOFACResponse></soapenv:Body></soapenv:Envelope>");
         }
         [WebMethod]
@@ -141,21 +138,18 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void ConsultaMTCNOrlandi()
         {
-            HttpContext.Current.Response.ContentType = "application/xml";
             SetResponse("<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><soapenv:Body><busquedaTransacResponse soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"><busquedaTransacReturn href=\"#id0\" /></busquedaTransacResponse><multiRef id=\"id0\" soapenc:root=\"0\" soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" xsi:type=\"ns1:ReceiveMoneyResponse\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:ns1=\"urn:RR\"><canal xsi:type=\"xsd:string\">1</canal><consume xsi:type=\"xsd:int\">0</consume><data xsi:type=\"soapenc:Array\" soapenc:arrayType=\"ns1:ReceiveMoneyData[1]\" xmlns:ns2=\"http://www.w3.org/2002/12/soap-encoding\"><item href=\"#id1\" /></data><idFlujo xsi:type=\"xsd:string\">UID113513826275</idFlujo><msj xsi:type=\"xsd:string\">Ok</msj><msjEnvio xsi:type=\"xsd:string\"></msjEnvio><neg xsi:type=\"xsd:string\">ORL</neg><numMatches xsi:type=\"xsd:int\">1</numMatches><oper xsi:type=\"xsd:string\">730200</oper><pais xsi:type=\"xsd:string\">1</pais><res xsi:type=\"xsd:int\">1</res><suc xsi:type=\"xsd:string\">1135</suc><uid xsi:type=\"xsd:string\">UID113513826276</uid></multiRef><multiRef id=\"id1\" soapenc:root=\"0\" soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" xsi:type=\"ns3:ReceiveMoneyData\" xmlns:ns3=\"urn:RR\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\"><apMatBen xsi:type=\"xsd:string\">GARCIA</apMatBen><apMatRem xsi:type=\"xsd:string\">RAMOS</apMatRem><apPatBen xsi:type=\"xsd:string\">HERNANDEZ</apPatBen><apPatRem xsi:type=\"xsd:string\">SANCHEZ</apPatRem><cargos xsi:type=\"xsd:double\">10.0</cargos><cdadBen xsi:type=\"xsd:string\">ACAPULCO</cdadBen><cdadRem xsi:type=\"xsd:string\">GLEN ELLYN</cdadRem><cpBen xsi:type=\"xsd:string\"></cpBen><cpRem xsi:type=\"xsd:string\">60137</cpRem><cta xsi:type=\"xsd:string\"></cta><dirBen xsi:type=\"xsd:string\"></dirBen><dirRem xsi:type=\"xsd:string\">145 SURREY DR APT S</dirRem><edoBen xsi:type=\"xsd:string\">MEXICO</edoBen><edoRem xsi:type=\"xsd:string\">IL</edoRem><fecEnvio xsi:type=\"xsd:string\">06-09-19</fecEnvio><horaEnv xsi:type=\"xsd:string\">0917A EDT</horaEnv><monKeyTransf xsi:type=\"xsd:string\">3623936810</monKeyTransf><montoBruto xsi:type=\"xsd:double\">210.0</montoBruto><montoPay xsi:type=\"xsd:double\">3936.0</montoPay><montoPrinc xsi:type=\"xsd:double\">200.0</montoPrinc><mtcn xsi:type=\"xsd:string\">7089049078</mtcn><newMtcn xsi:type=\"xsd:string\">1916087084260137</newMtcn><nomBen xsi:type=\"xsd:string\">DANIEL</nomBen><nomRem xsi:type=\"xsd:string\">LAURA</nomRem><paisCodeBen xsi:type=\"xsd:string\">MX</paisCodeBen><paisCodeRem xsi:type=\"xsd:string\">US</paisCodeRem><paisMonBen xsi:type=\"xsd:string\">MXN</paisMonBen><paisMonRem xsi:type=\"xsd:string\">USD</paisMonRem><status xsi:type=\"xsd:string\">LISTO PARA PAGAR</status><telBen xsi:type=\"xsd:string\"></telBen><telRem xsi:type=\"xsd:string\">6309949363</telRem></multiRef></soapenv:Body></soapenv:Envelope>");
         }
 
         [WebMethod]
         public void ConsultarAgenteMG()
         {
-            HttpContext.Current.Response.ContentType = "application/xml";
             SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:consultarAgenteResponse xmlns:ns2=\"http://ws.elektra.com/\"><response><respuesta><codigo>C00000</codigo><mensaje>Datos encontrados.</mensaje></respuesta><credencial><agentID>VQG1fhySEp08a8p1HBfCTA</agentID><agentSequence>61HNiUWEjFXSivoytmSKWQ</agentSequence><token>eYRmfSc7BfQy-UkluGbpDQ</token></credencial></response></ns2:consultarAgenteResponse></soap:Body></soap:Envelope>");
         }
 
         [WebMethod]
         public void PagosMG()
         {
-            HttpContext.Current.Response.ContentType = "application/xml";
             if (!string.IsNullOrEmpty(Request))
             {
                 if (Request.Contains("consultarMtcn"))
@@ -176,7 +170,6 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void PagosWU()
         {
-            HttpContext.Current.Response.ContentType = "application/xml";
             if (!string.IsNullOrEmpty(Request))
             {
                 if (Request.Contains("consultarMtcn"))
@@ -210,7 +203,6 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void ResOfac2()
         {
-            HttpContext.Current.Response.ContentType = "application/xml";
             if (Request.Contains("busquedaTransac"))
             {
 
@@ -220,7 +212,6 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void PagosBTS()
         {
-            HttpContext.Current.Response.ContentType = "application/xml";
             if (!string.IsNullOrEmpty(Request))
             {
                 if (Request.Contains("consultarMtcn"))
@@ -241,7 +232,6 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void PagosDRS()
         {
-            HttpContext.Current.Response.ContentType = "application/xml";
             if (!string.IsNullOrEmpty(Request))
             {
                 if (Request.Contains("consultaMtcn"))
@@ -267,7 +257,6 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void PagosXOOM()
         {
-            HttpContext.Current.Response.ContentType = "application/xml";
             if (!string.IsNullOrEmpty(Request))
             {
                 if (Request.Contains("consultarMtcn"))
@@ -284,7 +273,6 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void PagosInterMex()
         {
-            HttpContext.Current.Response.ContentType = "application/xml";
             //if (!string.IsNullOrEmpty(Request))
             {
                 if (Request.Contains("busqTxnXMtcn"))
@@ -302,7 +290,6 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void PagosViAmericas()
         {
-            HttpContext.Current.Response.ContentType = "application/xml";
             if (!string.IsNullOrEmpty(Request))
             {
                 if (Request.Contains("consultarMtcn"))
@@ -320,7 +307,6 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void PagosTransNetwork()
         {
-            HttpContext.Current.Response.ContentType = "application/xml";
             if (!string.IsNullOrEmpty(Request))
             {
                 if (Request.Contains("consultarMtcn"))
@@ -338,12 +324,12 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void PagosBarri()
         {
-            HttpContext.Current.Response.ContentType = "application/xml";
             if (!string.IsNullOrEmpty(Request))
             {
                 if (Request.Contains("consultarMtcn"))
                 {
-                    SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:consultarMtcnResponse xmlns:ns2=\"http://Ws.Elektra.Com/\"><response><uid>UID211112009038</uid><respuesta><codigo>C00000</codigo><mensaje>Respuesta exitosa.</mensaje></respuesta><remitente><nombre>J SALUD</nombre><segNombre></segNombre><apellidoPaterno>BUSTAMANTE</apellidoPaterno><apellidoMaterno>LOPEZ</apellidoMaterno><otroApellido></otroApellido></remitente><beneficiario><nombre>SUSANA</nombre><segNombre></segNombre><apellidoPaterno>LOPEZ</apellidoPaterno><apellidoMaterno>GONZALEZ</apellidoMaterno><otroApellido></otroApellido></beneficiario><datosRemesa><mtcn>uK0dXv0sJDE7UQFwYEhBWA</mtcn><montoPagar>utmbP-OVF11yk9NX2tPMhQ</montoPagar><montoOrigen>sCYjZh5keKF_PnRwS7qvBA</montoOrigen><tipoCambio>19.14</tipoCambio><fechaEnvio>2019-06-09T14:11:10.907</fechaEnvio><origenRem><paisOrigen>US</paisOrigen><monedaOrigen>USD</monedaOrigen><ciudadOrigen>BRYAN</ciudadOrigen><estadoOrigen>US-TX</estadoOrigen></origenRem><destinoRem><paisDestino>MX</paisDestino><monedaDestino>MXN</monedaDestino><ciudadDestino>COMONFORT</ciudadDestino><estadoDestino>MX-GUA</estadoDestino></destinoRem></datosRemesa></response></ns2:consultarMtcnResponse></soap:Body></soap:Envelope>");
+                    //SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:consultarMtcnResponse xmlns:ns2=\"http://Ws.Elektra.Com/\"><response><uid>UID211112009038</uid><respuesta><codigo>C00000</codigo><mensaje>Respuesta exitosa.</mensaje></respuesta><remitente><nombre>J SALUD</nombre><segNombre></segNombre><apellidoPaterno>BUSTAMANTE</apellidoPaterno><apellidoMaterno>LOPEZ</apellidoMaterno><otroApellido></otroApellido></remitente><beneficiario><nombre>SUSANA</nombre><segNombre></segNombre><apellidoPaterno>LOPEZ</apellidoPaterno><apellidoMaterno>GONZALEZ</apellidoMaterno><otroApellido></otroApellido></beneficiario><datosRemesa><mtcn>uK0dXv0sJDE7UQFwYEhBWA</mtcn><montoPagar>utmbP-OVF11yk9NX2tPMhQ</montoPagar><montoOrigen>sCYjZh5keKF_PnRwS7qvBA</montoOrigen><tipoCambio>19.14</tipoCambio><fechaEnvio>2019-06-09T14:11:10.907</fechaEnvio><origenRem><paisOrigen>US</paisOrigen><monedaOrigen>USD</monedaOrigen><ciudadOrigen>BRYAN</ciudadOrigen><estadoOrigen>US-TX</estadoOrigen></origenRem><destinoRem><paisDestino>MX</paisDestino><monedaDestino>MXN</monedaDestino><ciudadDestino>COMONFORT</ciudadDestino><estadoDestino>MX-GUA</estadoDestino></destinoRem></datosRemesa></response></ns2:consultarMtcnResponse></soap:Body></soap:Envelope>");
+                    SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:consultarMtcnResponse xmlns:ns2=\"http://Ws.Elektra.Com/\"><response><uid>UID211112009038</uid><respuesta><codigo>C00000</codigo><mensaje>Respuesta exitosa.</mensaje></respuesta><remitente><nombre>J SALUD</nombre><segNombre></segNombre><apellidoPaterno>BUSTAMANTE</apellidoPaterno><apellidoMaterno>LOPEZ</apellidoMaterno><otroApellido></otroApellido></remitente><beneficiario><nombre>TOÑO</nombre><segNombre></segNombre><apellidoPaterno>PIÑA</apellidoPaterno><apellidoMaterno></apellidoMaterno><otroApellido></otroApellido></beneficiario><datosRemesa><mtcn>uK0dXv0sJDE7UQFwYEhBWA</mtcn><montoPagar>utmbP-OVF11yk9NX2tPMhQ</montoPagar><montoOrigen>sCYjZh5keKF_PnRwS7qvBA</montoOrigen><tipoCambio>19.14</tipoCambio><fechaEnvio>2019-06-09T14:11:10.907</fechaEnvio><origenRem><paisOrigen>US</paisOrigen><monedaOrigen>USD</monedaOrigen><ciudadOrigen>BRYAN</ciudadOrigen><estadoOrigen>US-TX</estadoOrigen></origenRem><destinoRem><paisDestino>MX</paisDestino><monedaDestino>MXN</monedaDestino><ciudadDestino>COMONFORT</ciudadDestino><estadoDestino>MX-GUA</estadoDestino></destinoRem></datosRemesa></response></ns2:consultarMtcnResponse></soap:Body></soap:Envelope>");
                 }
                 else if (Request.Contains("pagarMtcn"))
                 {
@@ -356,7 +342,6 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void CatalogoPaisMonedaWU()
         {
-            HttpContext.Current.Response.ContentType = "application/xml";
             if (!string.IsNullOrEmpty(Request))
             {
                 //if (Request.Contains("getCatalogoPaisMoneda"))
@@ -380,7 +365,6 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void AvisoPriv()
         {
-            HttpContext.Current.Response.ContentType = "application/xml";
             //if (!string.IsNullOrEmpty(Request))
             //{
             //if (Request.Contains("Monto"))
@@ -392,7 +376,6 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void EnviosWu()
         {
-            HttpContext.Current.Response.ContentType = "application/xml";
             //if (!string.IsNullOrEmpty(Request))
             //{
             if (Request.Contains("getCatalogoPaisMoneda"))
@@ -426,8 +409,16 @@ namespace Mock_WS_Central.Pagos
         [WebMethod]
         public void BusCU()
         {
+            HttpContext.Current.Response.ContentType = "application/json";
             SetResponse("{  \"lstResponse \": [ {  \"pais \":  \"1 \",  \"canal \":  \"1 \",  \"sucursal \":  \"4037 \",  \"folio \":  \"2046 \",  \"nombre \":  \"JESUS \",  \"apellidoPaterno \":  \"CRUZ \",  \"apellidoMaterno \":  \"VICTORIA \",  \"sexo \":  \"M \",  \"tipoPersona \":  \"FI \",  \"fechaNacimiento \":  \"1987-08-22 \",  \"rfc \":  \"MEHF8605274E4 \",  \"curp \":  \"CUVJ870822HPLRCS02 \",  \"lugarNacimiento \":  \" \",  \"nacionalidad \":  \"1 \",  \"estadoCivil \":  \"1 \",  \"correoElectronico \":  \"jesuscv_isc@live.com.mx \",  \"calle \":  \"CDA HIDALGO 5 5 \",  \"numExterior \":  \" \",  \"numInterior \":  \" \",  \"colonia \":  \"EL PINAL \",  \"poblacion \":  \"TEZIUTLAN \",  \"estado \":  \"PL \",  \"codigoPostal \":  \"73890 \",  \"lada \":  \"52 \",  \"telefono \":  \"5560978126 \",  \"extencion \":  \" \",  \"actividad \":  \"63 \",  \"fechaAltaAmigo \":  \" \",  \"fechaModifAmigo \":  \" \",  \"tipoTarjeta \":  \" \",  \"numeroTarjeta \":  \" \",  \"status \":  \" \",  \"ocr \":  \" \",  \"viveOtroPais \":  \" \",  \"listaNegraTrans \":  \" \",  \"listaNegraDivisa \":  \" \",  \"pld \":  \" \",  \"statusCA \":  \"3 \",  \"identificaciones \": [ {  \"identificacion \":  \" \",  \"folioIdentificacion \":  \" \",  \"fechaEmi \":  \" \",  \"fechaExp \":  \" \",  \"fechaModificacionIdentificacion \":  \" \" } ] } ],  \"issue \": {  \"issue \": false,  \"fieldIssues \": [] }}");
          
+        }
+
+        [WebMethod]
+        public void BusqCte()
+        {
+            HttpContext.Current.Response.ContentType = "application/json";
+            SetResponse("{\"lstResponse\":[{\"pais\":\"1\",\"canal\":\"24\",\"sucursal\":\"9495\",\"folio\":\"1073\",\"nombre\":\"TOÑO\",\"apellidoPaterno\":\"PIÑA\",\"apellidoMaterno\":\"NUÑEZ\",\"sexo\":\"M\",\"tipoPersona\":\"FI\",\"fechaNacimiento\":\"06-04-1977\",\"rfc\":\"PINT770406N69\",\"curp\":\"\",\"lugarNacimiento\":\"449\",\"nacionalidad\":\"449\",\"estadoCivil\":\"0\",\"correoElectronico\":\"\",\"calle\":\"CRISTO REY\",\"numExterior\":\"249\",\"numInterior\":\"\",\"colonia\":\"CENTRO\",\"poblacion\":\"PUEBLA\",\"estado\":\"PUEBLA\",\"codigoPostal\":\"72000\",\"lada\":\"\",\"telefono\":\"5548786765\",\"extencion\":\"\",\"actividad\":\"290\",\"fechaAltaAmigo\":\"01-01-1900 00:00:00\",\"fechaModifAmigo\":\"23-02-2021 00:12:42\",\"tipoTarjeta\":\"\",\"numeroTarjeta\":\"\",\"status\":\"\",\"ocr\":\"0\",\"viveOtroPais\":\"0\",\"listaNegraTrans\":\"\",\"listaNegraDivisa\":\"\",\"pld\":\"\",\"statusCA\":\"2\",\"certificado\":\"0\",\"remesas\":\"\",\"statusHuellas\":\"1\",\"identificaciones\":[{\"identificacion\":\"2\",\"folioIdentificacion\":\"7418529637418\",\"fechaEmi\":\"08-10-2018\",\"fechaExp\":\"08-09-2020\",\"fechaModificacionIdentificacion\":\"08-10-2019\",\"marcaActualizacion\":\"1\"}]}],\"issue\":{\"issue\":false,\"fieldIssues\":[]}}");
         }
 
         private string Request = string.Empty;
@@ -438,6 +429,7 @@ namespace Mock_WS_Central.Pagos
             HttpContext.Current.Request.InputStream.Read(content, 0, content.Length);
             Request = Encoding.UTF8.GetString(content);
             //XMLRequest = new XDocument(new StringReader(Request));
+            HttpContext.Current.Response.ContentType = HttpContext.Current.Request.ContentType;
         }
         private string GetValueStringFromParent(string NodeRoot, string NodeSearched)
         {
