@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MockServer>
+  <Route>
+    <PartialPath>busquedaConfSuc</PartialPath>
+    <Request>
+      <Contains></Contains>
+      <Contains>HERNANDEZ</Contains>
+    <Contains></Contains>
+    </Request>
+      <Response>
+        <File>
+        </File>
+      </Response>
+  </Route>
+</MockServer>
