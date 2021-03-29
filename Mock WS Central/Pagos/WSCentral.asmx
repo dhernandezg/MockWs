@@ -1,1 +1,1 @@
-﻿<%@ WebService Language="C#" CodeBehind="WSCentral.asmx.cs" Class="Mock_WS_Central.Pagos.MockWSVigoORL" %>
+﻿<%@ WebService Language="C#" CodeBehind="WSCentral.asmx.cs" Class="MockWebApi.Models.MockWSVigoORL" %>

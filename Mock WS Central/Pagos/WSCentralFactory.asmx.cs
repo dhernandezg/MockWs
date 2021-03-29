@@ -7,7 +7,7 @@ using System.Web.Services.Protocols;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace Mock_WS_Central.Pagos
+namespace MockWebApi.Models
 {
     /// <summary>
     /// Descripción breve de WSVigoOrl

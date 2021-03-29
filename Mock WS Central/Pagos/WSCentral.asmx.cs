@@ -1,19 +1,21 @@
-﻿using System.Linq;
+﻿using System;
+using System.IO;
+using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.Script.Services;
 using System.Web.Services;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
-namespace Mock_WS_Central.Pagos
+namespace MockWebApi.Models
 {
-    /// <summary>
-    /// Descripción breve de MockWSVigoORL
-    /// </summary>
+    [ScriptService]
     [WebService(Namespace = "http://microsoft.com/webservices/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     //[System.ComponentModel.ToolboxItem(false)]
     // Para permitir que se llame a este servicio web desde un script, usando ASP.NET AJAX, quite la marca de comentario de la línea siguiente. 
-    [System.Web.Script.Services.ScriptService]
     public class MockWSVigoORL : System.Web.Services.WebService
     {
         public MockWSVigoORL()
@@ -60,7 +62,8 @@ namespace Mock_WS_Central.Pagos
                     //SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:validaRemesaComercialResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><nivelRiesgo>1</nivelRiesgo><marcaCte>P1</marcaCte><nivelTxn>1</nivelTxn><transaccion><codigoPaisIso>USA</codigoPaisIso></transaccion><acumulados><txnDia>0</txnDia><txnMes>0</txnMes><txnAnio>0</txnAnio><txnPagAnioOpe>1</txnPagAnioOpe><montoDia>3IubrNp6vRlIdOsSBk_1dg</montoDia><montoMes>3IubrNp6vRlIdOsSBk_1dg</montoMes><montoAnio>3IubrNp6vRlIdOsSBk_1dg</montoAnio><mtoMaxXEnv>3IubrNp6vRlIdOsSBk_1dg</mtoMaxXEnv></acumulados><puntos><actuales>0</actuales><xOperacion>0</xOperacion></puntos><camposReq>CURP,RELAC,EMPRESA,EDONAC,TEL,NUMTXNS,MNTOTXNS,FECHVIG</camposReq><resultado><codResp>C00000</codResp><msgResp>Validacion correcta, puede continuar con la operacion.</msgResp></resultado><uid>UID462405679507</uid></response></ns2:validaRemesaComercialResponse></soap:Body></soap:Envelope>");
                     SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:validaRemesaComercialResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><nivelRiesgo>1</nivelRiesgo><marcaCte>P1</marcaCte><nivelTxn>1</nivelTxn><transaccion><codigoPaisIso>USA</codigoPaisIso></transaccion><acumulados><txnDia>0</txnDia><txnMes>0</txnMes><txnAnio>0</txnAnio><txnPagAnioOpe>1</txnPagAnioOpe><montoDia>3IubrNp6vRlIdOsSBk_1dg</montoDia><montoMes>3IubrNp6vRlIdOsSBk_1dg</montoMes><montoAnio>3IubrNp6vRlIdOsSBk_1dg</montoAnio><mtoMaxXEnv>3IubrNp6vRlIdOsSBk_1dg</mtoMaxXEnv></acumulados><infoAdicionalCte><fechaAlta>07/02/2021</fechaAlta><fechaUltimaOperacion>07/02/2021</fechaUltimaOperacion><txnDiaEnvio>0</txnDiaEnvio><txnDiaPago>0</txnDiaPago><txnMesEnvio>0</txnMesEnvio><txnMesPago>0</txnMesPago><txnAnioEnvio>0</txnAnioEnvio><txnAnioPago>0</txnAnioPago><montoDiaEnvio>3IubrNp6vRlIdOsSBk_1dg</montoDiaEnvio><montoDiaPago>3IubrNp6vRlIdOsSBk_1dg</montoDiaPago><montoMesEnvio>3IubrNp6vRlIdOsSBk_1dg</montoMesEnvio><montoMesPago>3IubrNp6vRlIdOsSBk_1dg</montoMesPago><montoAnioEnvio>3IubrNp6vRlIdOsSBk_1dg</montoAnioEnvio><montoAnioPago>3IubrNp6vRlIdOsSBk_1dg</montoAnioPago></infoAdicionalCte><puntos><actuales>0</actuales><xOperacion>0</xOperacion></puntos><camposReq>DOM_CP,NOM,APMAT,APPAT,DOM_CALLE,DOM_PAIS,ID_TIPO,DOM_COL,EMPRESARIO,DOM_EDO,DOM_NEXT,DOM_NINT,DOM_POB,FNAC,ID_FOLIO,NAL</camposReq><resultado><codResp>C00000</codResp><msgResp>Validacion correcta, puede continuar con la operacion.</msgResp></resultado><uid>UID830314395384</uid></response></ns2:validaRemesaComercialResponse></soap:Body></soap:Envelope>");
                 }
-                else if (Request.Contains("validaRemesa")) {
+                else if (Request.Contains("validaRemesa"))
+                {
                     SetResponse("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns2:validaRemesaResponse xmlns:ns2=\"http://Controller.Ws.Elektra.Com/\"><response><nivelRiesgo>1</nivelRiesgo><transaccion><codigoPaisIso>USA</codigoPaisIso></transaccion><acumulados><txnDia>0</txnDia><txnMes>0</txnMes><txnAnio>3</txnAnio><montoDia>3IubrNp6vRlIdOsSBk_1dg</montoDia><montoMes>3IubrNp6vRlIdOsSBk_1dg</montoMes><montoAnio>cwBlCI3rmDTk8P5RIm3dag</montoAnio><mtoMaxXEnv>3IubrNp6vRlIdOsSBk_1dg</mtoMaxXEnv></acumulados><puntos><actuales>120</actuales><xOperacion>0</xOperacion></puntos><camposReq>APPAT,DOM_PAIS,DOM_EDO,DOM_NEXT,DOM_NINT,FNAC,APMAT,DOM_COL,DOM_CP,ID_FOLIO,NOM,NAL,DOM_CALLE,DOM_POB,ID_TIPO,TEL</camposReq><resultado><codResp>C00000</codResp><msgResp>Validacion correcta, puede continuar con la operacion.</msgResp></resultado><uid>UID113513829676</uid></response></ns2:validaRemesaResponse></soap:Body></soap:Envelope>");
                 }
                 else if (Request.Contains("registraTxn"))
@@ -71,7 +74,7 @@ namespace Mock_WS_Central.Pagos
         }
 
         [WebMethod]
-        public void validaRestriccionesEDD() 
+        public void validaRestriccionesEDD()
         {
             if (Request.Contains("validaRestriccionesCte"))
             {
@@ -367,7 +370,7 @@ namespace Mock_WS_Central.Pagos
         public void Fondeo()
         {
             HttpContext.Current.Response.ContentType = "application/json";
-           // SetResponse("{\"Descripcion\":\"No Requiere Fondeo Automatico\",\"DiferenciaTope\":0,\"Exe\":\"\",\"MontoFondeo\":0,\"NoError\":0,\"NumeroTransaccion\":0,\"SaldoCajero\":0,\"SaldoDeseado\":0,\"SaldoTope\":0}");
+            // SetResponse("{\"Descripcion\":\"No Requiere Fondeo Automatico\",\"DiferenciaTope\":0,\"Exe\":\"\",\"MontoFondeo\":0,\"NoError\":0,\"NumeroTransaccion\":0,\"SaldoCajero\":0,\"SaldoDeseado\":0,\"SaldoTope\":0}");
         }
 
         [WebMethod]
@@ -405,9 +408,9 @@ namespace Mock_WS_Central.Pagos
         }
 
         [WebMethod]
-        public void SerTransfeInt() 
+        public void SerTransfeInt()
         {
-            if (!string.IsNullOrEmpty(Request)) 
+            if (!string.IsNullOrEmpty(Request))
             {
                 SetResponse("0");
             }
@@ -419,7 +422,7 @@ namespace Mock_WS_Central.Pagos
         {
             HttpContext.Current.Response.ContentType = "application/json";
             SetResponse("{  \"lstResponse \": [ {  \"pais \":  \"1 \",  \"canal \":  \"1 \",  \"sucursal \":  \"4037 \",  \"folio \":  \"2046 \",  \"nombre \":  \"JESUS \",  \"apellidoPaterno \":  \"CRUZ \",  \"apellidoMaterno \":  \"VICTORIA \",  \"sexo \":  \"M \",  \"tipoPersona \":  \"FI \",  \"fechaNacimiento \":  \"1987-08-22 \",  \"rfc \":  \"MEHF8605274E4 \",  \"curp \":  \"CUVJ870822HPLRCS02 \",  \"lugarNacimiento \":  \" \",  \"nacionalidad \":  \"1 \",  \"estadoCivil \":  \"1 \",  \"correoElectronico \":  \"jesuscv_isc@live.com.mx \",  \"calle \":  \"CDA HIDALGO 5 5 \",  \"numExterior \":  \" \",  \"numInterior \":  \" \",  \"colonia \":  \"EL PINAL \",  \"poblacion \":  \"TEZIUTLAN \",  \"estado \":  \"PL \",  \"codigoPostal \":  \"73890 \",  \"lada \":  \"52 \",  \"telefono \":  \"5560978126 \",  \"extencion \":  \" \",  \"actividad \":  \"63 \",  \"fechaAltaAmigo \":  \" \",  \"fechaModifAmigo \":  \" \",  \"tipoTarjeta \":  \" \",  \"numeroTarjeta \":  \" \",  \"status \":  \" \",  \"ocr \":  \" \",  \"viveOtroPais \":  \" \",  \"listaNegraTrans \":  \" \",  \"listaNegraDivisa \":  \" \",  \"pld \":  \" \",  \"statusCA \":  \"3 \",  \"identificaciones \": [ {  \"identificacion \":  \" \",  \"folioIdentificacion \":  \" \",  \"fechaEmi \":  \" \",  \"fechaExp \":  \" \",  \"fechaModificacionIdentificacion \":  \" \" } ] } ],  \"issue \": {  \"issue \": false,  \"fieldIssues \": [] }}");
-         
+
         }
 
         [WebMethod]
@@ -453,10 +456,39 @@ namespace Mock_WS_Central.Pagos
             HttpContext.Current.Response.Write(content);
         }
 
+
+        private readonly string ConfigFile = AppDomain.CurrentDomain.BaseDirectory + @"Configuration\Config.xml";
+
         [WebMethod]
-        public void MockWs() 
+        [ScriptMethod(UseHttpGet = true)]
+        public void MockWs(string service)
         {
-            
+            if (!File.Exists(ConfigFile))
+            {
+                throw new FileNotFoundException("El archivo de configuracion no existe");
+            }
+            var config = Deserialize<ConfigRoutes>(XDocument.Load(ConfigFile).ToString())
+                .DinamycMock.Where(m => string.CompareOrdinal(service, m.PartialPath) == 0);
+            if (config.Any())
+            {
+                var currentConf = config.First();
+                if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + currentConf))
+                {
+                    throw new FileNotFoundException("El archivo de configuracion no existe");
+                }
+            }
+            else
+                throw new InvalidOperationException("No existe condiguracion para el servicio solicitado");
+
+        }
+
+        private static T Deserialize<T>(string data) where T : class
+        {
+            using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(data)))
+            {
+                var serializer = new XmlSerializer(typeof(T));
+                return (T)serializer.Deserialize(ms);
+            }
         }
     }
 }

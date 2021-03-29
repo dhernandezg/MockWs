@@ -73,6 +73,11 @@
     <Content Include="Central.asmx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pagos\ConfigRoutes.cs" />
+    <Compile Include="Pagos\Filter.cs" />
+    <Compile Include="Pagos\RequestMock.cs" />
+    <Compile Include="Pagos\ResponseMock.cs" />
+    <Compile Include="Pagos\Route.cs" />
     <Compile Include="Pagos\WSCentral.asmx.cs">
       <DependentUpon>WSCentral.asmx</DependentUpon>
       <SubType>Component</SubType>

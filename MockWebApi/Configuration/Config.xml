@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MockServer>
+  <DinamycMock>
+    <Route>
+      <PartialPath>infoXIdentificacion</PartialPath>
+      <Request>
+        <Filters>
+        </Filters>
+      </Request>
+      <Response>
+        <ContentType>application/json</ContentType>
+        <File>Busqueda de clientes/infoXIdentificacion.mock</File>
+      </Response>
+    </Route>
+    <Route>
+      <PartialPath>infoXNombre</PartialPath>
+      <Request>
+        <Filters>
+        </Filters>
+      </Request>
+      <Response>
+        <ContentType>application/json</ContentType>
+        <File>Busqueda de clientes/infoXNombre.mock</File>
+      </Response>
+    </Route>
+  </DinamycMock>
+</MockServer>
