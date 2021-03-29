@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace RequestMock
@@ -35,10 +32,9 @@ namespace RequestMock
         {
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
-                StringBuilder stringContent = new StringBuilder();
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    File.AppendAllText(folderBrowserDialog1.SelectedPath+"\\"+row.Cells[0].Value + ".mock",string.Format("{0}|{1}\n",row.Cells[1].Value,row.Cells[3].Value));
+                    File.AppendAllText(folderBrowserDialog1.SelectedPath + "\\" + row.Cells[0].Value + ".mock", string.Format("{0}|{1}\n", row.Cells[1].Value, row.Cells[3].Value));
                 }
             }
 
@@ -51,40 +47,55 @@ namespace RequestMock
                 MessageBox.Show("El archivo log no es valido o no existe");
                 return;
             }
-            foreach (string line in File.ReadAllLines(textBox1.Text))
+
+            foreach (string line in FixLog(File.ReadAllLines(textBox1.Text)))
             {
-                WsBusqCte(line);
-                //WsAvisoPriv(line);
-                //WsVentanillaMexico(line);
+                BuildData(line);
             }
+        }
+
+        private IEnumerable<string> FixLog(string[] lines)
+        {
+            var listLines = new List<string>();
+            StringBuilder fixedLine = new StringBuilder();
+            Regex startLineReg = new Regex(@"^[0-9]{2}/[0-9]{2}/[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3} \|");
+            foreach (string line in lines)
+            {
+                if (startLineReg.IsMatch(line))
+                {
+                    listLines.Add(fixedLine.ToString());
+                    fixedLine.Clear();
+                }
+                fixedLine.Append(line.Trim());
+            }
+            string lastLine = fixedLine.ToString();
+            if (!string.IsNullOrEmpty(lastLine))
+            {
+                listLines.Add(fixedLine.ToString());
+            }
+            return listLines;
+        }
+
+        private void BuildData(string line)
+        {
+            WsBusqCte(line);
+            WsAvisoPriv(line);
+            WsVentanillaMexico(line);
         }
 
         private void WsBusqCte(string line)
         {
             if (line.Contains("infoXIdentificacion") || line.Contains("infoXNombre"))
             {
-                key = currentResponse = string.Empty;
                 int lastIndex = line.LastIndexOf(' ');
                 int ipLastIndex = line.IndexOf("&ipAutenticacion=");
                 int indexMethod = line.LastIndexOf("/");
                 key = string.Format("{0}|{1}", line.Substring(indexMethod + 1, line.LastIndexOf(". ") - indexMethod - 1), line.Substring(lastIndex, ipLastIndex - lastIndex).Trim());
             }
-            else if (line.Contains("CtrlWebService. RESPUESTA: {\"lstResponse\":"))
+            else if (line.Contains("CtrlWebService. RESPUESTA: {\"lstResponse\":") && !string.IsNullOrEmpty(key))
             {
-                currentResponse += line;
-                if (line.Contains("]}} "))
-                {
-                    dataGridView1.Rows.Add(key.Substring(0, key.IndexOf('|')), key.Substring(key.IndexOf('|') + 1), currentResponse.Substring(0, 24), currentResponse.Substring(53));
-                    key = currentResponse = string.Empty;
-                }
-            }
-            else if (!string.IsNullOrEmpty(currentResponse))
-            {
-                currentResponse += line;
-                if (line.Contains("]}} "))
-                {
-                    dataGridView1.Rows.Add(key.Substring(0, key.IndexOf('|')), key.Substring(key.IndexOf('|') + 1), currentResponse.Substring(0, 24), currentResponse.Substring(53));
-                }
+                dataGridView1.Rows.Add(key.Substring(0, key.IndexOf('|')), key.Substring(key.IndexOf('|') + 1), line.Substring(0, 24), line.Substring(53));
+                key = string.Empty;
             }
         }
 
@@ -92,14 +103,13 @@ namespace RequestMock
         {
             if (line.Contains("validaCliente . PETICION: "))
             {
-                key = currentResponse = string.Empty;
                 int lastIndex = line.LastIndexOf(" {");
-                key = line.Substring(lastIndex);
+                key = line.Substring(lastIndex+1);
             }
-            else if (line.Contains("CtrlJsonService. RESPUESTA: {\"codigo"))
+            else if (line.Contains("CtrlJsonService. RESPUESTA: {\"codigo") && !string.IsNullOrEmpty(key))
             {
                 int lastIndex = line.LastIndexOf(" {");
-                dataGridView1.Rows.Add("AvisoPriv", key, line.Substring(0, 24), line.Substring(lastIndex));
+                dataGridView1.Rows.Add("AvisoPriv", key, line.Substring(0, 24), line.Substring(lastIndex+1));
             }
         }
 
@@ -112,32 +122,15 @@ namespace RequestMock
         {
             if (line.Contains("WSValidacionVentanillaMexico/services"))
             {
-                key = currentResponse = string.Empty;
                 int lastIndex = line.IndexOf(" [");
                 key = FixXmlData(line.Substring(lastIndex));
             }
-            else if (line.StartsWith("[") && (!string.IsNullOrEmpty(key) || !string.IsNullOrEmpty(currentResponse)))
-            {
-                if (string.IsNullOrEmpty(currentResponse))
-                {
-                    key += FixXmlData(line);
-                }
-                else
-                {
-                    currentResponse += FixXmlData(line);
-                    if (line.Contains("[/soap:Envelope]"))
-                    {
-                        string methodService = currentResponse.Substring(currentResponse.IndexOf("ns2:") + 4);
-                        methodService = methodService.Substring(0, methodService.IndexOf(" "));
-                        dataGridView1.Rows.Add(methodService, key, currentResponse.Substring(0, 24), currentResponse.Substring(24));
-                        key = currentResponse = string.Empty;
-                    }
-                }
-            }
             else if (line.Contains("CtrlWebService. RESPUESTA: [") && !string.IsNullOrEmpty(key))
             {
-                currentResponse += line.Substring(0, 24);
-                currentResponse += FixXmlData(line.Substring(line.IndexOf('[')));
+                string methodService = key.Substring(key.IndexOf("<a1:") + 4);
+                methodService = methodService.Substring(0, methodService.IndexOf(" "));
+                dataGridView1.Rows.Add(methodService, key, line.Substring(0, 24), FixXmlData(line.Substring(line.IndexOf('['))));
+                key = string.Empty;
             }
         }
     }
