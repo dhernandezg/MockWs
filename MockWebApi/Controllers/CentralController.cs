@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Http;
-using System.Web.Mvc;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
@@ -17,8 +16,13 @@ namespace MockWebApi.Controllers
     /// </summary>
     public class CentralController : ApiController
     {
+        public CentralController() 
+        {
+            DataFromHttpStream = GetRequestFromStream();
+        }
+
         /// <summary>
-        /// Metodo de obtencion de respuestas mock
+        /// Método de obtención de respuestas mock
         /// </summary>
         /// <param name="service">Servicio a realizar mock</param>
         public IHttpActionResult Get(string service)
@@ -28,18 +32,29 @@ namespace MockWebApi.Controllers
         }
 
         /// <summary>
-        /// Realiza el proceso mock para cada peticion
+        /// Método de obtención de respuestas mock
+        /// </summary>
+        /// <param name="service">Servicio a realizar mock</param>
+        public IHttpActionResult Post(string service)
+        {
+            MockWs(service);
+            return Ok();
+        }
+
+        private string DataFromHttpStream { get; set; }
+
+        /// <summary>
+        /// Realiza el proceso mock para cada petición
         /// </summary>
         /// <param name="service">Servicio a hacer mock</param>
         private void MockWs(string service)
         {
-            var data = HttpContext.Current.Request.Params.AllKeys.Where(k => HttpContext.Current.Request.Params[k] == "2");
             if (!File.Exists(ConfigFile))
             {
-                throw new FileNotFoundException("El archivo de configuracion global no existe");
+                throw new FileNotFoundException("El archivo de configuración global no existe");
             }
             var config = Deserialize<ConfigRoutes>(XDocument.Load(ConfigFile).ToString())
-                .DinamycMock.Where(m => string.CompareOrdinal(service, m.PartialPath) == 0).FirstOrDefault();
+                .DinamycMock.Where(m => string.CompareOrdinal(service, m.PartialPath) == 0 && IsBoolNulable(m.Request?.Filters.Any(f=> DataFromHttpStream.Contains(f)))).FirstOrDefault();
 
             if (config != null)
             {
@@ -49,11 +64,24 @@ namespace MockWebApi.Controllers
                     throw new FileNotFoundException("El archivo de respuesta no existe:" + fileResp);
                 }
                 SetResponse(FilterMockResponse(fileResp));
-                UpdateContentType(config.Response.ContentType.Trim());
+                UpdateContentType(config.Response.ContentType?.Trim());
             }
             else
-                throw new InvalidOperationException("No existe configuracion para el servicio solicitado");
+            {
+                throw new InvalidOperationException("No existe configuración para el servicio solicitado");
+            }
+        }
 
+        private string GetRequestFromStream() 
+        {
+            var content = new byte[HttpContext.Current.Request.InputStream.Length];
+            HttpContext.Current.Request.InputStream.Read(content, 0, content.Length);
+            return Encoding.UTF8.GetString(content);
+        }
+
+        private bool IsBoolNulable(bool? data) 
+        {
+            return data == null || data != false;
         }
 
         /// <summary>
@@ -69,22 +97,44 @@ namespace MockWebApi.Controllers
         }
 
         /// <summary>
-        /// Filtra la lista de respuesta obteniendo la respuesta con los parametros especificados
+        /// Filtra la lista de respuesta obteniendo la respuesta con los parámetros especificados
         /// </summary>
         /// <param name="responses">Lista de respuestas</param>
-        /// <returns>Respuesta filtrada por parametros</returns>
+        /// <returns>Respuesta filtrada por parámetros</returns>
         private string FilterByParams(IEnumerable<string> responses)
         {
             return responses
-                .Where(l =>
-                    HttpContext.Current.Request.Params.AllKeys
-                        .Any(k =>
-                            HttpContext.Current.Request.Params[k].Contains(l.Substring(0, l.IndexOf('|')))
-                            )).Select(p => SplitResponse(p)).FirstOrDefault();
+                .Where(l => l.IndexOf('|') != 0 && FilterByHttpMethod(l.Substring(0, l.IndexOf('|'))))
+                .Select(p => SplitResponse(p)).FirstOrDefault();
+        }
+
+        private bool FilterByHttpMethod(string filter)
+        {
+            if (IsPost())
+            {
+                if (HttpContext.Current.Request.Form.Count != 0)
+                {
+                    return HttpContext.Current.Request.Form.ToString().Contains(filter);
+                }
+                else 
+                {
+                    return DataFromHttpStream.Contains(filter);
+                }
+            }
+            else
+            {
+                return HttpContext.Current.Request.Params.AllKeys
+                       .Any(k => HttpContext.Current.Request.Params[k].Contains(filter));
+            }
+        }
+
+        bool IsPost()
+        {
+            return HttpContext.Current.Request.HttpMethod.Equals("POST");
         }
 
         /// <summary>
-        /// Filtra las respuestas devolviendo la respuesta por defecto(Respuesta sin parametros)
+        /// Filtra las respuestas devolviendo la respuesta por defecto(Respuesta sin parámetros)
         /// </summary>
         /// <param name="responses">Lista de respuestas</param>
         /// <returns>Respuesta por defecto</returns>
@@ -94,7 +144,7 @@ namespace MockWebApi.Controllers
         }
 
         /// <summary>
-        /// Filtra las respuestas devolviento la primera del archivo de respuestas
+        /// Filtra las respuestas devolviendo la primera del archivo de respuestas
         /// </summary>
         /// <param name="responses">Respuestas</param>
         /// <returns>Primer respuesta</returns>
@@ -114,7 +164,7 @@ namespace MockWebApi.Controllers
         }
 
         /// <summary>
-        /// Asigna la respuesta a la peticion
+        /// Asigna la respuesta a la petición
         /// </summary>
         /// <param name="content">Contenido</param>
         private void SetResponse(string content)
@@ -127,7 +177,7 @@ namespace MockWebApi.Controllers
         }
 
         /// <summary>
-        /// Actualiza el content type para cada peticion
+        /// Actualiza el content type para cada petición
         /// </summary>
         /// <param name="contentType">Content type</param>
         private void UpdateContentType(string contentType)
@@ -153,7 +203,7 @@ namespace MockWebApi.Controllers
         }
 
         /// <summary>
-        /// Archivo de configuracion
+        /// Archivo de configuración
         /// </summary>
         private readonly string ConfigFile = AppDomain.CurrentDomain.BaseDirectory + @"Configuration\Config.xml";
     }

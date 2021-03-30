@@ -61,7 +61,8 @@ namespace RequestMock
             Regex startLineReg = new Regex(@"^[0-9]{2}/[0-9]{2}/[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3} \|");
             foreach (string line in lines)
             {
-                if (startLineReg.IsMatch(line))
+
+                if (startLineReg.IsMatch(FixLine(line)))
                 {
                     listLines.Add(fixedLine.ToString());
                     fixedLine.Clear();
@@ -73,7 +74,13 @@ namespace RequestMock
             {
                 listLines.Add(fixedLine.ToString());
             }
+            File.WriteAllLines("All.log",listLines);
             return listLines;
+        }
+
+        private string FixLine(string line)
+        {
+            return (line.StartsWith("∩╗┐") ? line.Substring(3) : line).Replace("├æ", "Ñ");
         }
 
         private void BuildData(string line)
@@ -104,12 +111,12 @@ namespace RequestMock
             if (line.Contains("validaCliente . PETICION: "))
             {
                 int lastIndex = line.LastIndexOf(" {");
-                key = line.Substring(lastIndex+1);
+                key = line.Substring(lastIndex + 1);
             }
             else if (line.Contains("CtrlJsonService. RESPUESTA: {\"codigo") && !string.IsNullOrEmpty(key))
             {
                 int lastIndex = line.LastIndexOf(" {");
-                dataGridView1.Rows.Add("AvisoPriv", key, line.Substring(0, 24), line.Substring(lastIndex+1));
+                dataGridView1.Rows.Add("AvisoPriv", key, line.Substring(0, 24), line.Substring(lastIndex + 1));
             }
         }
 
@@ -123,20 +130,29 @@ namespace RequestMock
             if (line.Contains("WSValidacionVentanillaMexico/services"))
             {
                 int lastIndex = line.IndexOf(" [");
-                key = FixXmlData(line.Substring(lastIndex));
+                string methodService = line.Substring(line.IndexOf("[a1:") + 4);
+                key = methodService.Substring(0, methodService.IndexOf(" "))+"|";
+                if (line.Contains("validaRestriccionesCte") || line.Contains("validaInfoCte")) 
+                {
+                    string tempData = line.Substring(lastIndex);
+                    int startIndex = tempData.IndexOf("[nombre]");
+                    key += tempData.Substring(startIndex,tempData.IndexOf("[/fechaNacimiento]") -startIndex).Replace("][","]@[");
+                }
+                else 
+                {
+                    key += FixXmlData(line.Substring(lastIndex));
+                }
+
             }
             else if (line.Contains("CtrlWebService. RESPUESTA: [") && !string.IsNullOrEmpty(key))
             {
-                string methodService = key.Substring(key.IndexOf("<a1:") + 4);
-                methodService = methodService.Substring(0, methodService.IndexOf(" "));
-                dataGridView1.Rows.Add(methodService, key, line.Substring(0, 24), FixXmlData(line.Substring(line.IndexOf('['))));
+                int separatorKey = key.IndexOf("|");
+                dataGridView1.Rows.Add(FixXmlData(key.Substring(0, separatorKey)),
+                    FixXmlData(key.Substring(separatorKey+1)),
+                    line.Substring(0, 24), 
+                    FixXmlData(line.Substring(line.IndexOf('['))));
                 key = string.Empty;
             }
         }
-    }
-
-    public class MockEntry
-    {
-        public string TypeService { get; set; }
     }
 }

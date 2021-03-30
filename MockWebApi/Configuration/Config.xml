@@ -3,10 +3,6 @@
   <DinamycMock>
     <Route>
       <PartialPath>infoXIdentificacion</PartialPath>
-      <Request>
-        <Filters>
-        </Filters>
-      </Request>
       <Response>
         <ContentType>application/json</ContentType>
         <File>Busqueda de clientes/infoXIdentificacion.mock</File>
@@ -14,12 +10,19 @@
     </Route>
     <Route>
       <PartialPath>infoXNombre</PartialPath>
+      <Response>
+        <ContentType>application/json</ContentType>
+        <File>Busqueda de clientes/infoXNombre.mock</File>
+      </Response>
+    </Route>
+    <Route>
+      <PartialPath>validaVentanilla</PartialPath>
       <Request>
         <Filters>
+          <Contains>a0:validaRestriccionesCte</Contains>
         </Filters>
       </Request>
       <Response>
-        <ContentType>application/json</ContentType>
         <File>Busqueda de clientes/infoXNombre.mock</File>
       </Response>
     </Route>
