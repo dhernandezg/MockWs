@@ -19,11 +19,33 @@
       <PartialPath>validaVentanilla</PartialPath>
       <Request>
         <Filters>
-          <Contains>a0:validaRestriccionesCte</Contains>
+          <Contains>a1:validaRestriccionesCte</Contains>
         </Filters>
       </Request>
       <Response>
-        <File>Busqueda de clientes/infoXNombre.mock</File>
+        <File>Validacion Ventanilla Mexico/validaRestriccionesCte.mock</File>
+      </Response>
+    </Route>
+    <Route>
+      <PartialPath>validaVentanilla</PartialPath>
+      <Request>
+        <Filters>
+          <Contains>a1:validaInfoCte</Contains>
+        </Filters>
+      </Request>
+      <Response>
+        <File>Validacion Ventanilla Mexico/validaInfoCte.mock</File>
+      </Response>
+    </Route>
+    <Route>
+      <PartialPath>validaVentanilla</PartialPath>
+      <Request>
+        <Filters>
+          <Contains>a1:validaRemesaComercial</Contains>
+        </Filters>
+      </Request>
+      <Response>
+        <File>Validacion Ventanilla Mexico/validaRemesaComercial.mock</File>
       </Response>
     </Route>
   </DinamycMock>

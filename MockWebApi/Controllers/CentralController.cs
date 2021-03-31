@@ -16,7 +16,7 @@ namespace MockWebApi.Controllers
     /// </summary>
     public class CentralController : ApiController
     {
-        public CentralController() 
+        public CentralController()
         {
             DataFromHttpStream = GetRequestFromStream();
         }
@@ -54,7 +54,7 @@ namespace MockWebApi.Controllers
                 throw new FileNotFoundException("El archivo de configuración global no existe");
             }
             var config = Deserialize<ConfigRoutes>(XDocument.Load(ConfigFile).ToString())
-                .DinamycMock.Where(m => string.CompareOrdinal(service, m.PartialPath) == 0 && IsBoolNulable(m.Request?.Filters.Any(f=> DataFromHttpStream.Contains(f)))).FirstOrDefault();
+                .DinamycMock.Where(m => string.CompareOrdinal(service, m.PartialPath) == 0 && IsBoolNulable(m.Request?.Filters.Any(f => DataFromHttpStream.Contains(f)))).FirstOrDefault();
 
             if (config != null)
             {
@@ -72,14 +72,14 @@ namespace MockWebApi.Controllers
             }
         }
 
-        private string GetRequestFromStream() 
+        private string GetRequestFromStream()
         {
             var content = new byte[HttpContext.Current.Request.InputStream.Length];
             HttpContext.Current.Request.InputStream.Read(content, 0, content.Length);
             return Encoding.UTF8.GetString(content);
         }
 
-        private bool IsBoolNulable(bool? data) 
+        private bool IsBoolNulable(bool? data)
         {
             return data == null || data != false;
         }
@@ -110,21 +110,19 @@ namespace MockWebApi.Controllers
 
         private bool FilterByHttpMethod(string filter)
         {
-            if (IsPost())
+            var filters = filter.Split('@');
+            if (HttpContext.Current.Request.Form.Count != 0)
             {
-                if (HttpContext.Current.Request.Form.Count != 0)
-                {
-                    return HttpContext.Current.Request.Form.ToString().Contains(filter);
-                }
-                else 
-                {
-                    return DataFromHttpStream.Contains(filter);
-                }
+                return filters.All(f => HttpContext.Current.Request.Form.ToString().Contains(f));
             }
-            else
+            else if (!string.IsNullOrEmpty(DataFromHttpStream))
             {
-                return HttpContext.Current.Request.Params.AllKeys
-                       .Any(k => HttpContext.Current.Request.Params[k].Contains(filter));
+                return filters.All(f => DataFromHttpStream.Contains(f));
+            }
+            else 
+            {
+                return filters.All(f => HttpContext.Current.Request.Params.AllKeys
+                                        .Any(k => HttpContext.Current.Request.Params[k].Contains(f)));
             }
         }
 

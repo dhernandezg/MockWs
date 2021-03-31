@@ -80,7 +80,17 @@ namespace RequestMock
 
         private string FixLine(string line)
         {
-            return (line.StartsWith("∩╗┐") ? line.Substring(3) : line).Replace("├æ", "Ñ");
+            return (line.StartsWith("∩╗┐") ? line.Substring(3) : line)
+                .Replace("├æ", "Ñ")
+                .Replace("├│", "ó")
+                .Replace("├║", "ú")
+                .Replace("├▒", "ñ")
+                .Replace("├í", "á")
+                .Replace("├⌐", "é")
+                .Replace("├¡", "í")
+                .Replace("├ô", "Ó")
+                .Replace("├Ü", "Ú")
+                .Replace("┬┐", string.Empty);
         }
 
         private void BuildData(string line)
@@ -132,13 +142,19 @@ namespace RequestMock
                 int lastIndex = line.IndexOf(" [");
                 string methodService = line.Substring(line.IndexOf("[a1:") + 4);
                 key = methodService.Substring(0, methodService.IndexOf(" "))+"|";
-                if (line.Contains("validaRestriccionesCte") || line.Contains("validaInfoCte")) 
+                if (line.Contains("validaRestriccionesCte") || line.Contains("validaInfoCte"))
                 {
                     string tempData = line.Substring(lastIndex);
                     int startIndex = tempData.IndexOf("[nombre]");
-                    key += tempData.Substring(startIndex,tempData.IndexOf("[/fechaNacimiento]") -startIndex).Replace("][","]@[");
+                    key += tempData.Substring(startIndex, tempData.IndexOf("[/fechaNacimiento]") - startIndex).Replace("][", "]@[");
                 }
-                else 
+                else if (line.Contains("validaRemesaComercial")) 
+                {
+                    string tempData = line.Substring(lastIndex);
+                    int startIndex = tempData.IndexOf("[clienteUnico]");
+                    key += tempData.Substring(startIndex, tempData.IndexOf("[banderasCU]") - startIndex).Replace("][", "]@[");
+                }
+                else
                 {
                     key += FixXmlData(line.Substring(lastIndex));
                 }
