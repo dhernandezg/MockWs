@@ -19,7 +19,7 @@
       <PartialPath>validaVentanilla</PartialPath>
       <Request>
         <Filters>
-          <Contains>a1:validaRestriccionesCte</Contains>
+          <Contains>:validaRestriccionesCte</Contains>
         </Filters>
       </Request>
       <Response>
@@ -30,7 +30,7 @@
       <PartialPath>validaVentanilla</PartialPath>
       <Request>
         <Filters>
-          <Contains>a1:validaInfoCte</Contains>
+          <Contains>:validaInfoCte</Contains>
         </Filters>
       </Request>
       <Response>
@@ -41,11 +41,34 @@
       <PartialPath>validaVentanilla</PartialPath>
       <Request>
         <Filters>
-          <Contains>a1:validaRemesaComercial</Contains>
+          <Contains>:validaRemesaComercial</Contains>
         </Filters>
       </Request>
       <Response>
         <File>Validacion Ventanilla Mexico/validaRemesaComercial.mock</File>
+      </Response>
+    </Route>
+    <Route>
+      <PartialPath>WsBarri</PartialPath>
+      <Request>
+        <Filters>
+          <Contains>pagarMtcn</Contains>
+          <Contains>identificacionCte</Contains>
+        </Filters>
+      </Request>
+      <Response>
+        <File>Barri/pagarMtcn.mock</File>
+      </Response>
+    </Route>
+    <Route>
+      <PartialPath>WsBarri</PartialPath>
+      <Request>
+        <Filters>
+          <Contains>consultarMtcn</Contains>
+        </Filters>
+      </Request>
+      <Response>
+        <File>Barri/consultarMtcn.mock</File>
       </Response>
     </Route>
   </DinamycMock>

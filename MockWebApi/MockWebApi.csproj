@@ -202,6 +202,11 @@
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <Content Include="Response\Busqueda de Clientes\infoXIdentificacion.mock" />
     <Content Include="Response\Busqueda de Clientes\infoXNombre.mock" />
+    <Content Include="Response\Validacion Ventanilla Mexico\validaInfoCte.mock" />
+    <Content Include="Response\Validacion Ventanilla Mexico\validaRemesaComercial.mock" />
+    <Content Include="Response\Validacion Ventanilla Mexico\validaRestriccionesCte.mock" />
+    <Content Include="Response\Barri\pagarMtcn.mock" />
+    <Content Include="Response\Barri\consultarMtcn.mock" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -225,7 +230,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Response\Validacion Ventanilla Mexico\" />
     <Folder Include="Views\Mock\" />
     <Folder Include="Views\PagosIntermex\" />
     <Folder Include="Views\ReactivacionIntermex\" />
