@@ -4,5 +4,6 @@
     {
         public string ContentType { get; set; }
         public string File { get; set; }
+        public bool RegularString { get; set; }
     }
 }

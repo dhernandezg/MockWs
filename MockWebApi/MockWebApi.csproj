@@ -207,6 +207,14 @@
     <Content Include="Response\Validacion Ventanilla Mexico\validaRestriccionesCte.mock" />
     <Content Include="Response\Barri\pagarMtcn.mock" />
     <Content Include="Response\Barri\consultarMtcn.mock" />
+    <Content Include="Response\Fondeo\validarFondeo.mock" />
+    <Content Include="Response\Validacion Ventanilla Mexico\registraTxn.mock" />
+    <Content Include="Response\ConfiguracionTda\configTda.mock" />
+    <Content Include="Response\DEX\listaNegra.mock" />
+    <Content Include="Response\DEX\token.mock" />
+    <Content Include="Response\Promociones\promo.mock" />
+    <Content Include="Response\Digitalizacion\digAvisoPriv.mock" />
+    <Content Include="Response\Digitalizacion\digDocumento.mock" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

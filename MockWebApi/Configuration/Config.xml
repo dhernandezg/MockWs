@@ -49,6 +49,17 @@
       </Response>
     </Route>
     <Route>
+      <PartialPath>validaVentanilla</PartialPath>
+      <Request>
+        <Filters>
+          <Contains>:registraTxn</Contains>
+        </Filters>
+      </Request>
+      <Response>
+        <File>Validacion Ventanilla Mexico/registraTxn.mock</File>
+      </Response>
+    </Route>
+    <Route>
       <PartialPath>WsBarri</PartialPath>
       <Request>
         <Filters>
@@ -69,6 +80,55 @@
       </Request>
       <Response>
         <File>Barri/consultarMtcn.mock</File>
+      </Response>
+    </Route>
+    
+    <Route>
+      <PartialPath>WsFondeo</PartialPath>
+      <Response>
+        <ContentType>application/json</ContentType>
+        <File>Fondeo/validarFondeo.mock</File>
+      </Response>
+    </Route>
+    
+    <Route>
+      <PartialPath>WSConfiguracionesTda</PartialPath>
+      <Response>
+        <File>configuracionTda/configTda.mock</File>
+      </Response>
+    </Route>
+    <Route>
+      <PartialPath>WSDigAvisoPriv</PartialPath>
+      <Response>
+        <File>Digitalizacion/digAvisoPriv.mock</File>
+      </Response>
+    </Route>
+    <Route>
+      <PartialPath>WSDigitalizacion</PartialPath>
+      <Response>
+        <File>Digitalizacion/digDocumento.mock</File>
+      </Response>
+    </Route>
+
+    <Route>
+      <PartialPath>WSPromociones</PartialPath>
+      <Response>
+        <File>Promociones/promo.mock</File>
+      </Response>
+    </Route>
+
+     <Route>
+      <PartialPath>WSToken</PartialPath>
+      <Response>
+        <File>Dex/token.mock</File>
+        <RegularString>true</RegularString>
+      </Response>
+    </Route>
+    <Route>
+      <PartialPath>WSListaNegra</PartialPath>
+      <Response>
+        <File>Dex/listaNegra.mock</File>
+        <RegularString>true</RegularString>
       </Response>
     </Route>
   </DinamycMock>

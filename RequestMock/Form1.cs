@@ -74,6 +74,7 @@ namespace RequestMock
             {
                 listLines.Add(FixLine(strContent.ToString()));
             }
+            File.WriteAllLines("Data.Fixed.log",listLines);
             return listLines;
         }
 
@@ -98,6 +99,7 @@ namespace RequestMock
             WsAvisoPriv(line);
             WsVentanillaMexico(line);
             WsBarri(line);
+            WSFondeo(line);
         }
 
         private void WsBusqCte(string line)
@@ -118,7 +120,7 @@ namespace RequestMock
 
         private void WsAvisoPriv(string line)
         {
-            if (line.Contains("validaCliente . PETICION: "))
+            if (line.Contains("WsValidaDocsExpComun/servicio/validaCliente . PETICION: "))
             {
                 int lastIndex = line.LastIndexOf(" {");
                 key = line.Substring(lastIndex + 1);
@@ -127,6 +129,7 @@ namespace RequestMock
             {
                 int lastIndex = line.LastIndexOf(" {");
                 dataGridView1.Rows.Add("AvisoPriv", key, line.Substring(0, 24), line.Substring(lastIndex + 1));
+                key = string.Empty;
             }
         }
 
@@ -142,17 +145,21 @@ namespace RequestMock
                 int lastIndex = line.IndexOf(" [");
                 string methodService = line.Substring(line.IndexOf("[a1:") + 4);
                 key = methodService.Substring(0, methodService.IndexOf(" ")) + "|";
+                string tempData = line.Substring(lastIndex);
                 if (line.Contains("validaRestriccionesCte") || line.Contains("validaInfoCte"))
                 {
-                    string tempData = line.Substring(lastIndex);
                     int startIndex = tempData.IndexOf("[nombre]");
                     key += tempData.Substring(startIndex, tempData.IndexOf("[/fechaNacimiento]") - startIndex).Replace("][", "]@[");
                 }
                 else if (line.Contains("validaRemesaComercial"))
                 {
-                    string tempData = line.Substring(lastIndex);
                     int startIndex = tempData.IndexOf("[clienteUnico]");
                     key += tempData.Substring(startIndex, tempData.IndexOf("[banderasCU]") - startIndex).Replace("][", "]@[");
+                }
+                else if (line.Contains("registraTxn"))
+                {   
+                    int startIndex = tempData.IndexOf("[montoLocal]");
+                    key += tempData.Substring(startIndex, tempData.IndexOf("[operacion]") - startIndex).Replace("][", "]@[");
                 }
                 else
                 {
@@ -198,6 +205,22 @@ namespace RequestMock
                     FixXmlData(key.Substring(separatorKey + 1)),
                     line.Substring(0, 24),
                     FixXmlData(line.Substring(line.IndexOf('['))));
+                key = string.Empty;
+            }
+        }
+
+        private void WSFondeo(string line) 
+        {
+            if (line.Contains("FondeoAutomatico.svc/wsFondeoValidaSaldo . PETICION: "))
+            {
+                int lastIndex = line.LastIndexOf("Usuario\":\"");
+                key = line.Substring(lastIndex);
+                key = key.Substring(0, key.IndexOf("\",\""));
+            }
+            else if (line.Contains("CtrlJsonService. RESPUESTA: {\"Descripcion") && !string.IsNullOrEmpty(key))
+            {
+                int lastIndex = line.LastIndexOf(" {");
+                dataGridView1.Rows.Add("validarFondeo", key, line.Substring(0, 24), line.Substring(lastIndex + 1));
                 key = string.Empty;
             }
         }

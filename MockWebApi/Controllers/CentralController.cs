@@ -63,8 +63,19 @@ namespace MockWebApi.Controllers
                 {
                     throw new FileNotFoundException("El archivo de respuesta no existe:" + fileResp);
                 }
-                SetResponse(FilterMockResponse(fileResp));
+                var stringResponse = FilterMockResponse(fileResp);
+
+                if (config.Response.RegularString)
+                {
+                    SetResponse(stringResponse.Replace("\\n","\n").Replace("\\r","\r"));
+                }
+                else
+                {
+                    SetResponse(stringResponse);
+                }
+
                 UpdateContentType(config.Response.ContentType?.Trim());
+
             }
             else
             {
@@ -119,7 +130,7 @@ namespace MockWebApi.Controllers
             {
                 return filters.All(f => DataFromHttpStream.Contains(f));
             }
-            else 
+            else
             {
                 return filters.All(f => HttpContext.Current.Request.Params.AllKeys
                                         .Any(k => HttpContext.Current.Request.Params[k].Contains(f)));
@@ -172,6 +183,15 @@ namespace MockWebApi.Controllers
                 throw new ArgumentException(nameof(content));
             }
             HttpContext.Current.Response.Write(content);
+        }
+
+        /// <summary>
+        /// Asigna una respuesta para las cadenas regulares
+        /// </summary>
+        /// <param name="vs"></param>
+        private void SetResponse(byte[] vs)
+        {
+            HttpContext.Current.Response.BinaryWrite(vs);
         }
 
         /// <summary>
